@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public class AccessBD {
     protected static final String DRIVER_NAME="com.mysql.jdbc.Driver";
-    protected static final String DB_NAME="dev17deb";
+    protected static final String DB_NAME="banque_root";
     protected static final String URL="jdbc:mysql://localhost/"+ DB_NAME;
     protected static final String USER="root";
     protected static final String PASSWORD="";

@@ -24,7 +24,12 @@ public class Client extends User{
         this.photo = photo;
         this.valide = valide;
     }
-
+    
+    
+    public Client(String nom, String prenom, String login, String mdp) {
+        super(nom, prenom, login, mdp);
+        this.valide = false;
+    }
     
 
     public int getPhoto() {

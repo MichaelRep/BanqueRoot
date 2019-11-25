@@ -56,7 +56,7 @@
                         <h5 class="text-center"> </h5>
                         <br>
                         <div>
-                            <form action="inscription" method="POST">
+                            <form action="InscriptionClient" method="POST">
                                 <div class="form-group">
                                     <input name="nom" type="text" placeholder="nom" class="form-control">
                                 </div>
