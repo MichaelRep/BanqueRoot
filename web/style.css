@@ -1,0 +1,56 @@
+.maj{
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-align: center;
+}
+.perso{
+    margin-left: 50px;
+    text-shadow: 5px 5px 5px rgb(255,132,132);
+}
+.decal{
+    margin-left: 50px;
+}
+.centerT{
+    text-align: center;
+}
+.leftT{
+    text-align: left;
+}
+.ls{
+    letter-spacing:  5px;
+}
+.mypol{
+    font-family: Cambria ;
+}
+.fl{
+    float: left;
+    width: 47%;
+}
+.ml{
+    margin-left: 55%;
+}
+.gTitre{
+    font-size: 28px;
+    font-family: Roboto;
+    color: steelblue;
+    text-align: center;
+}
+.titr{
+    color: darkgrey;
+    letter-spacing: 3px;
+    font-size: 16px;
+}
+.pmsg{
+    font-family: Cambria;
+    color: steelblue;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.pmsgr{
+    font-family: Cambria;
+    color: red;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+

@@ -33,7 +33,7 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     </head>
     <body>
-        <form action="loginnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn" method="GET">
+        <form action="login" method="GET">
             <ul class="nav nav-tabs bg-dark">
                 <li class="nav-item">
                     <button type="submit" class="btn btn-primary btn-block">Accueil</button>
