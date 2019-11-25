@@ -25,8 +25,14 @@
             </div>
 
         </div>
+        <div class="row">
 
-        <div class="text-center" > <h2>Liste des conseillers</h2>  </div>    
+            <div class="col-sm-6 text-center"><h2>Liste des conseillers</h2></div>
+            <div class="col-sm-2">
+                <button class="btn-success" <%--onclick="location.href = 'deco'"--%>>Ajouter un conseiller</button>
+            </div>
+
+        </div>  
         <ul>
             <li><h6>Conseillers activés</h6></li>
             <table border="2">
@@ -36,9 +42,6 @@
                         <th>Nom</th>
                         <th>Prenom</th>
                         <th>Adresse mail</th>
-                        <th>Désactiver</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +51,19 @@
                         <td>Nicolas</td>
                         <td>nicolas.sarkozydu75@gmail.com</td>
                         <td>
-                            <%--<input type="button" style="background-image:url('Images/croixrouge.jpg)"/> --%>
+                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                            <button class="btn-danger">désactiver</button>
+                        </td>
+                        <td>
+                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                            <button class="btn-warning">modifier</button>
+                        </td>
+                        <td>
+                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                            <button class="btn-danger">supprimer</button>
                         </td>
                         
                     </tr>
@@ -58,6 +73,43 @@
                 </tbody>
             </table>
             <li><h6>Conseillers désactivés</h6></li>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Adresse mail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Hollande</td>
+                        <td>François</td>
+                        <td>francois.hollandedu75@gmail.com</td>
+                        <td>
+                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                            <button class="btn-success">activer</button>
+                        </td>
+                        <td>
+                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                            <button class="btn-warning">modifier</button>
+                        </td>
+                        <td>
+                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                            <button class="btn-danger">supprimer</button>
+                        </td>
+                        
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                        
+                </tbody>
+            </table>
         </ul>
 
     </body>
