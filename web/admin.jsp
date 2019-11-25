@@ -136,10 +136,30 @@
                         <h4 class="modal-title">Création d'un conseiller</h4>
                     </div>
                     <div class="modal-body">
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <form <%--action="CreationConseiller" method="POST"--%>>
+                            <div class="form-group">
+                                <input name="nom" type="text" placeholder="nom" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input name="prenom" type="text" placeholder="prenom" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input name="login" type="text" placeholder="login" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input name="mdp" type="password" placeholder="password" class="form-control">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
+                                </div>
+                                
+                            </div>
+                        </form>
                     </div>
                 </div>
 
