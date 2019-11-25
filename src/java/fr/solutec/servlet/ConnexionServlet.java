@@ -79,24 +79,16 @@ public class ConnexionServlet extends HttpServlet {
         String log = request.getParameter("login");
         String mdp = request.getParameter("mdp");
        
-        User u = new User(2, "test", "test", "test", "test");
 
-        if (log.equals(u.getLogin()) && log.equals(u.getMdp())) {
-            request.getSession(true).setAttribute("userC", u);
-            request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+      
 
-        } else {
-
-            request.setAttribute("msg", "again");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
-
-        /* 
+        
         
         try {
             User u = UserDao.getByLoginAndPass(log, mdp);
             if(u!=null){
                  request.getSession(true).setAttribute("userC", u);
+                 
             response.sendRedirect("home");
         }
         else{
@@ -107,7 +99,7 @@ public class ConnexionServlet extends HttpServlet {
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println("Exxept afetr tantative de conn : " + e.getMessage());
-        } */
+        } 
     }
 
     /**

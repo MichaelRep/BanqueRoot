@@ -16,9 +16,19 @@ public class User {
     private String prenom;
     private String login;
     private String mdp;
+    private String type;
 
     public int getId() {
         return id;
+    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setId(int id) {
@@ -62,22 +72,25 @@ public class User {
         this.mdp = mdp;
     }
 
-    public User(int id, String nom, String prenom, String login, String mdp) {
+    public User(int id, String nom, String prenom, String login, String mdp, String type) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
         this.mdp = mdp;
+        this.type = type;
     }
 
-    public User(String nom, String prenom, String login, String mdp) {
-
+    public User(String nom, String prenom, String login, String mdp, String type) {
         this.nom = nom;
         this.prenom = prenom;
         this.login = login;
         this.mdp = mdp;
-        
+        this.type = type;
     }
+
+        
+    
     public User() {
     }
 
