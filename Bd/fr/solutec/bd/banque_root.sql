@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 --
 DROP SCHEMA IF EXISTS banque_root;
 CREATE SCHEMA IF NOT EXISTS banque_root;
+USE banque_root;
 CREATE TABLE IF NOT EXISTS `administrateur` (
   `id_utilisateur` int(11) NOT NULL,
   UNIQUE KEY `id_utilisateur` (`id_utilisateur`)
