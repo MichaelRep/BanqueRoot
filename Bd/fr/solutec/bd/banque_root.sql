@@ -159,6 +159,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `prenom` varchar(60) NOT NULL,
   `login_mail` varchar(60) NOT NULL,
   `mdp` varchar(60) NOT NULL,
+    `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -166,10 +167,10 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login_mail`, `mdp`) VALUES
-(1, 'Mangeot', 'Martin', 'martin.mangeot.6@gmail.com', 'test1'),
-(2, 'Danlsak', 'Germain', 'gdanlsak@gmail.com', 'conseil1'),
-(3, 'Time', 'Vincent', 'vtime@gmail.com', 'client1');
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login_mail`, `mdp`,`type`) VALUES
+(1, 'Mangeot', 'Martin', 'martin.mangeot.6@gmail.com', 'test1','administrateur'),
+(2, 'Danlsak', 'Germain', 'gdanlsak@gmail.com', 'conseil1','conseiller'),
+(3, 'Time', 'Vincent', 'vtime@gmail.com', 'client1','client');
 
 --
 -- Contraintes pour les tables exportées
