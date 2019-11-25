@@ -29,6 +29,34 @@
         <div class="text-center" > <h2>Liste des conseillers</h2>  </div>    
         <ul>
             <li><h6>Conseillers activés</h6></li>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Adresse mail</th>
+                        <th>Désactiver</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Sarkozy</td>
+                        <td>Nicolas</td>
+                        <td>nicolas.sarkozydu75@gmail.com</td>
+                        <td>
+                            <%--<input type="button" style="background-image:url('Images/croixrouge.jpg)"/> --%>
+                        </td>
+                        
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                        
+                </tbody>
+            </table>
             <li><h6>Conseillers désactivés</h6></li>
         </ul>
 
