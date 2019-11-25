@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.UserDao;
+import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/ConnexionServlet"})
+@WebServlet(name = "ConnexionServlet", urlPatterns = {"/login"})
 public class ConnexionServlet extends HttpServlet {
 
     /**
@@ -37,7 +39,7 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");            
+            out.println("<title>Servlet ConnexionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
@@ -58,7 +60,8 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     /**
@@ -72,7 +75,39 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String log = request.getParameter("login");
+        String mdp = request.getParameter("mdp");
+       
+        User u = new User(2, "test", "test", "test", "test");
+
+        if (log.equals(u.getLogin()) && log.equals(u.getMdp())) {
+            request.getSession(true).setAttribute("userC", u);
+            request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+
+        } else {
+
+            request.setAttribute("msg", "again");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+
+        /* 
+        
+        try {
+            User u = UserDao.getByLoginAndPass(log, mdp);
+            if(u!=null){
+                 request.getSession(true).setAttribute("userC", u);
+            response.sendRedirect("home");
+        }
+        else{
+            
+            request.setAttribute("msg", "retentez");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("Exxept afetr tantative de conn : " + e.getMessage());
+        } */
     }
 
     /**
