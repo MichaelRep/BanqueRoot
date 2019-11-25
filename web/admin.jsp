@@ -29,11 +29,7 @@
         <div class="text-center" > <h2>Liste des conseillers</h2>  </div>    
         <ul>
             <li><h6>Conseillers activés</h6></li>
-            <li>24 H Chrono</li>
-            <li>Peacky Blinders</li>
-            <li>Game of Thrones</li>
-            <li><a href="https://fr.wikipedia.org/wiki/Demon_Slayer" target="_blank">Kimetsu no Yaiba</a></li>
-            <li>Comissaire Maigret</li>
+            <li><h6>Conseillers désactivés</h6></li>
         </ul>
 
     </body>
