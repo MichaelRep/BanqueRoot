@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 25 Novembre 2019 à 14:06
+-- Généré le: Lun 25 Novembre 2019 à 15:05
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -33,6 +33,13 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   UNIQUE KEY `id_utilisateur` (`id_utilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `administrateur`
+--
+
+INSERT INTO `administrateur` (`id_utilisateur`) VALUES
+(1);
+
 -- --------------------------------------------------------
 
 --
@@ -55,10 +62,17 @@ CREATE TABLE IF NOT EXISTS `carte` (
 
 CREATE TABLE IF NOT EXISTS `client` (
   `id_utilisateur` int(11) NOT NULL,
-  `photo` blob NOT NULL,
+  `photo` blob,
   `valide` tinyint(1) NOT NULL,
   UNIQUE KEY `id_utilisateur` (`id_utilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`id_utilisateur`, `photo`, `valide`) VALUES
+(3, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -83,10 +97,17 @@ CREATE TABLE IF NOT EXISTS `compte` (
 
 CREATE TABLE IF NOT EXISTS `conseiller` (
   `id_utilisateur` int(11) NOT NULL,
-  `photo` blob NOT NULL,
+  `photo` blob,
   `actif` tinyint(1) NOT NULL,
   UNIQUE KEY `id_utilisateur` (`id_utilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `conseiller`
+--
+
+INSERT INTO `conseiller` (`id_utilisateur`, `photo`, `actif`) VALUES
+(2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -139,7 +160,16 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `login_mail` varchar(60) NOT NULL,
   `mdp` varchar(60) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login_mail`, `mdp`) VALUES
+(1, 'Mangeot', 'Martin', 'martin.mangeot.6@gmail.com', 'test1'),
+(2, 'Danlsak', 'Germain', 'gdanlsak@gmail.com', 'conseil1'),
+(3, 'Time', 'Vincent', 'vtime@gmail.com', 'client1');
 
 --
 -- Contraintes pour les tables exportées
@@ -196,4 +226,3 @@ ALTER TABLE `historique_montant`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
