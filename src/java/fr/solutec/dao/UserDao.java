@@ -87,7 +87,7 @@ public class UserDao {
    public static boolean  utilisateurDejaExistant (String log)
     throws SQLException{ 
         
-        String sql = "SELECT COUNT(*) from utilisateur WHERE login_mail=?";
+        String sql = "SELECT COUNT(*) as nb from utilisateur WHERE login_mail=?";
         
         Connection connexion =AccessBD.getConnection();
         
@@ -96,6 +96,16 @@ public class UserDao {
         requette.setString (1,log);
          
         ResultSet rs =requette.executeQuery();     
+        
+        if (rs.next()){
+            if (rs.getInt("nb")==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }
         
         return true;
     }
