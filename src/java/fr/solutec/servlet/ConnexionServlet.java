@@ -84,9 +84,10 @@ public class ConnexionServlet extends HttpServlet {
         try {
 
             User u = UserDao.getByLoginAndPass(log, mdp);
-            out.println("CECI EST UN TEST");
+            
 
             if (u != null) {
+                
 
                 request.getSession(true).setAttribute("userC", u);
                 
