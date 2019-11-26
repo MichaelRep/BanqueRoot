@@ -97,7 +97,7 @@ public class ConnexionServlet extends HttpServlet {
 
                         break;
                     case "3":
-                        request.getRequestDispatcher("client.jsp").forward(request, response);
+                        request.getRequestDispatcher("/WEB-INF/client.jsp").forward(request, response);
 
                         break;
 
