@@ -7,6 +7,7 @@ package fr.solutec.servlet;
 
 import fr.solutec.dao.UserDao;
 import fr.solutec.model.Client;
+import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -63,7 +64,8 @@ public class ClientServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Client u = (Client) session.getAttribute("userC");
+        User u = (User) session.getAttribute("userC");
+        PrintWriter out = response.getWriter();
         
         if (u != null){
            

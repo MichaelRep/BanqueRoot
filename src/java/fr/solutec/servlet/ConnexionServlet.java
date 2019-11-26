@@ -100,8 +100,7 @@ public class ConnexionServlet extends HttpServlet {
                         response.sendRedirect("conseillerServlet");
                         break;
                     case "3":
-                        request.getRequestDispatcher("/WEB-INF/client.jsp").forward(request, response);
-
+                        response.sendRedirect("ClientServlet");
                         break;
 
                     default:
