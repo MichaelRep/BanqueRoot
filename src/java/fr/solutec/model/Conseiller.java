@@ -13,14 +13,14 @@ public class Conseiller extends User {
     private int photo;
     private boolean actif;
 
-    public Conseiller(int photo, boolean actif, int id, String nom, String prenom, String login, String mdp) {
-        super(id, nom, prenom, login, mdp);
+    public Conseiller(int photo, boolean actif, int id, String nom, String prenom, String login, String mdp, String type) {
+        super(id, nom, prenom, login, mdp, type);
         this.photo = photo;
         this.actif = actif;
     }
 
-    public Conseiller(int photo, boolean actif, String nom, String prenom, String login, String mdp) {
-        super(nom, prenom, login, mdp);
+    public Conseiller(int photo, boolean actif, String nom, String prenom, String login, String mdp, String type) {
+        super(nom, prenom, login, mdp, type);
         this.photo = photo;
         this.actif = actif;
     }

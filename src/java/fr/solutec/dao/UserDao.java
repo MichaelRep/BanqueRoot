@@ -53,7 +53,7 @@ public class UserDao {
     public static void  insertUser (User user)
     throws SQLException{
         
-        String sql = "INSERT INTO utilisateur (nom, prenom, login_mail, mdp) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO utilisateur (nom, prenom, login_mail, mdp) VALUES (?,?,?,?,?);";
         
         Connection connexion =AccessBD.getConnection();
         
@@ -63,6 +63,7 @@ public class UserDao {
         requette.setString (2,user.getPrenom());
         requette.setString (3,user.getLogin());
         requette.setString (4,user.getMdp());
+        requette.setString (5,user.getType());
                
         requette.execute();       
         
