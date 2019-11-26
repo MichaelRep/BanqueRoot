@@ -78,28 +78,43 @@ public class ConnexionServlet extends HttpServlet {
 
         String log = request.getParameter("login");
         String mdp = request.getParameter("mdp");
-       
 
-      
-
-        
-        
         try {
+
             User u = UserDao.getByLoginAndPass(log, mdp);
-            if(u!=null){
-                 request.getSession(true).setAttribute("userC", u);
-                 
-            response.sendRedirect("home");
-        }
-        else{
-            
-            request.setAttribute("msg", "retentez");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+
+            if (u != null) {
+
+                request.getSession(true).setAttribute("userC", u);
+                
+                
+                switch (u.getType()) {
+                    case "1":
+                        request.getRequestDispatcher("admin.jsp").forward(request, response);
+                        break;
+                    case "2":
+                        request.getRequestDispatcher("conseiller.jsp").forward(request, response);
+
+                        break;
+                    case "3":
+                        request.getRequestDispatcher("client.jsp").forward(request, response);
+
+                        break;
+
+                    default:
+
+                        request.setAttribute("msg", "La connexion a échouée");
+                }
+
+            } else {
+
+                request.setAttribute("msg", "Le login ou le mot de passe est incorrect");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println("Exxept afetr tantative de conn : " + e.getMessage());
-        } 
+            out.println("Connexion : " + e.getMessage());
+        }
     }
 
     /**
