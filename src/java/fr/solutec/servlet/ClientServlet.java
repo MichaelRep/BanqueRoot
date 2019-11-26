@@ -65,11 +65,12 @@ public class ClientServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("userC");
-        PrintWriter out = response.getWriter();
+        Client c =(Client) session.getAttribute("clientC"); 
         
         if (u != null){
            
         request.setAttribute("personne", u);
+        request.setAttribute("client", c);
         request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
         }
         else{
