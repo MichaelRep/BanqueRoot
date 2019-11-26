@@ -6,7 +6,9 @@
 package fr.solutec.servlet;
 
 import fr.solutec.dao.UserDao;
+import fr.solutec.model.Cartebleue;
 import fr.solutec.model.Client;
+import fr.solutec.model.Compte;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -66,11 +68,15 @@ public class ClientServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("userC");
         Client c =(Client) session.getAttribute("clientC"); 
+        Compte m =(Compte) session.getAttribute("compteC");
+        Cartebleue b = (Cartebleue) session.getAttribute("carteC");
+        
         
         if (u != null){
            
         request.setAttribute("personne", u);
         request.setAttribute("client", c);
+        request.setAttribute("compte", m);
         request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
         }
         else{
