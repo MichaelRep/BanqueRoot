@@ -12,25 +12,25 @@ import java.sql.Date;
  * @author esic
  */
 public class Histo_transaction {
-    private int id_compte;
+    private Compte compte;
     private Date date;
     private int montant;
 
     public Histo_transaction() {
     }
 
-    public Histo_transaction(int id_compte, Date date, int montant) {
-        this.id_compte = id_compte;
+    public Histo_transaction(Compte compte, Date date, int montant) {
+        this.compte = compte;
         this.date = date;
         this.montant = montant;
     }
 
-    public int getId_compte() {
-        return id_compte;
+    public Compte getCompte() {
+        return compte;
     }
 
-    public void setId_compte(int id_compte) {
-        this.id_compte = id_compte;
+    public void setCompte(Compte compte) {
+        this.compte = compte;
     }
 
     public Date getDate() {
@@ -48,7 +48,6 @@ public class Histo_transaction {
     public void setMontant(int montant) {
         this.montant = montant;
     }
-    
-    
+
     
 }
