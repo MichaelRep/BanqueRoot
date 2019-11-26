@@ -7,6 +7,7 @@ package fr.solutec.dao;
 
 import fr.solutec.model.Conseiller;
 import fr.solutec.model.User;
+import java.io.Console;
 import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,19 +62,28 @@ public class AdminDao {
     
     public static void changeEtatActif(int id, boolean actif) throws SQLException{
         String sql ="";
-        
+        System.out.println("TESTTTTTTTTTTT");
         if (actif) {
-            sql = "UPDATE conseiller SET actif='false' WHERE id_utilisateur = " + id + ";";
-            
-        }
+            sql = "UPDATE conseiller SET actif=0 WHERE id_utilisateur = " + id + ";";
+            System.out.println(sql);
+         }
         else{
-            sql = "UPDATE conseiller SET actif='true' WHERE id_utilisateur = " + id + ";";
-            Logger.getLogger(sql);
+            sql = "UPDATE conseiller SET actif=1 WHERE id_utilisateur = " + id + ";";
+            System.out.println(sql);
         }
         Connection connexion = AccessBD.getConnection();
         Statement requete = connexion.createStatement();
         
         requete.executeUpdate(sql);
         
+    }
+    
+    public static void suppressionConseiller(int id) throws SQLException{
+        String sql ="DELETE FROM conseiller where id_utilisateur = " + id;
+        Connection connexion = AccessBD.getConnection();
+        Statement requete = connexion.createStatement();
+        requete.execute(sql);
+        sql ="DELETE FROM utilisateur where id = " + id;
+        requete.execute(sql);
     }
 }

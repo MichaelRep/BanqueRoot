@@ -22,7 +22,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+        
+        <script>
 
+            function recup(id){
+                document.querySelector("#idsup").value = id;
+            }
+            
+        </script>
+        
+        
+        
 
     </head>
     <body>
@@ -68,15 +78,17 @@
                             <td>${conseiller.id}</td>
                             <td>${conseiller.nom}</td>
                             <td>${conseiller.prenom}</td>
-                            <td>${conseiller.actif}</td>
+                            <td>${conseiller.login}</td>
                             <td>
-                                <button class="btn-danger"  >désactiver</button>
+                                <button name="btn-activate" class="btn-danger"  >désactiver</button>
+                                
+                            </td>
+
+                            <td>
+                                <button name="btn-modify" class="btn-warning">modifier</button>
                             </td>
                             <td>
-                                <button class="btn-warning">modifier</button>
-                            </td>
-                            <td>
-                                <button class="btn-danger">supprimer</button>
+                                <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
                             </td>
                             </tr>
                         </form>
@@ -104,28 +116,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <c:forEach items="${conseillers}" var="conseiller">
 
-                            <c:if test="${conseiller.actif==false}">
+                    <c:forEach items="${conseillers}" var="conseiller">
 
+                        <c:if test="${conseiller.actif==false}">
+                        <form action="ChangementActifServlet" method="POST">
                             <tr>
-                        <input type="hidden" name="id" value="${conseiller.id}"></input>
-                        <input type="hidden" name="actif" value="${conseiller.actif}">
-                        <td>${conseiller.id}</td>
-                        <td>${conseiller.nom}</td>
-                        <td>${conseiller.prenom}</td>
-                        <td>${conseiller.actif}</td>
-                        <td>
-                            <button class="btn-danger">désactiver</button>
-                        </td>
-                        <td>
-                            <button class="btn-warning">modifier</button>
-                        </td>
-                        <td>
-                            <button class="btn-danger">supprimer</button>
-                        </td>
-                        </tr>
+                            <input type="hidden" name="id" value="${conseiller.id}"></input>
+                            <input type="hidden" name="actif" value="${conseiller.actif}"></input>
+                            <td>${conseiller.id}</td>
+                            <td>${conseiller.nom}</td>
+                            <td>${conseiller.prenom}</td>
+                            <td>${conseiller.login}</td>
+                            <td>
+                                <button class="btn-success"  >activer</button>
+                            </td>
+                            <td>
+                                <button class="btn-warning">modifier</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
+                            </td>
+                            </tr>
+                        </form>
 
                     </c:if>
 
@@ -135,15 +148,39 @@
                 </c:forEach>
 
 
-                </tr>
-                <tr></tr>
-                <tr></tr>
 
                 </tbody>
             </table>
 
 
         </ul>
+            
+            
+            
+            
+            
+            <%--  mmmmmmm j --%>
+            
+              <div class="modal fade" id="modalConfirmSup" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Êtes-vous sûr de vouloir supprimer ?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="SuppressionConseillerServlet" method="POST">
+                            <input type="hidden" name="idsup" id="idsup" >
+                            <button type="submit">oui</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            
+                <%--  mmmmmmm j --%>
 
 
         <div class="modal fade" id="modalCreationConseiller" role="dialog">
@@ -157,16 +194,16 @@
                     <div class="modal-body">
                         <form action="InscriptionConseiller" method="POST">
                             <div class="form-group">
-                                <input name="nomC" type="text" placeholder="nom" class="form-control">
+                                <input required="required" name="nomC" type="text" placeholder="nom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="prenomC" type="text" placeholder="prenom" class="form-control">
+                                <input required="required" name="prenomC" type="text" placeholder="prenom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="loginC" type="text" placeholder="login" class="form-control">
+                                <input required="required" name="loginC" type="text" placeholder="login" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="mdpC" type="password" placeholder="password" class="form-control">
+                                <input required="required" name="mdpC" type="password" placeholder="password" class="form-control">
                             </div>
 
                             <div class="row">

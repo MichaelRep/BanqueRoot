@@ -90,7 +90,7 @@ public class InscriptionConseiller extends HttpServlet {
             AdminDao.insertConseiller(cons);
             //response.sendRedirect("login");
             //response.sendRedirect("/login");
-            response.sendRedirect("InscriptionConseiller");
+            response.sendRedirect("homeAdmin");
             //}
             // else{
 
