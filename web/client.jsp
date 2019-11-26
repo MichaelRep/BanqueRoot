@@ -26,10 +26,10 @@
         <h1>Votre compte</h1>
         <div class="row">
 
-            <div class="col-sm-2"><h5> Bienvenue ! </h5></div>
+            <div class="col-sm-2"><h5> Bienvenue ${personne.prenom} ${personne.nom} ! </h5></div>
             <div class="col-sm-8"></div>
             <div class="col-sm-2">
-                <button type="button" <%--onclick="location.href = 'deco'"--%> class="btn btn-danger">Déconnexion</button>
+                <button type="button" onclick="location.href = 'deco'" class="btn btn-danger">Déconnexion</button>
 
             </div>
 
@@ -38,130 +38,60 @@
 
             <div class="col-sm-6 text-center"><h2>Vos infos !</h2></div>
             <div class="col-sm-2">
-                <button type="button" class="btn-success" data-toggle ="modal" data-target="#modalCreationConseiller" <%--onclick="location.href = 'deco'"--%>>Modifier vos infos</button>
+                <button type="button" class="btn-success">Modifier vos infos</button>
             </div>
 
         </div>  
-        <ul>
-            <li><h6>Conseillers activés</h6></li>
-            <table border="2">
-                <thead>
-                    <tr>
-                        <th class="text-center">id</th>
-                        <th class="text-center">Nom</th>
-                        <th class="text-center">Prenom</th>
-                        <th class="text-center">Adresse mail</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="colid">1</td>
-                        <td class="col2">Sarkozy</td>
-                        <td class="col2">Nicolas</td>
-                        <td class="col3" title="nicolas.sarkozydu75@gmail.com">nicolas.sarkozydu75@gmail.com</td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-danger">désactiver</button>
-                        </td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-warning">modifier</button>
-                        </td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-danger">supprimer</button>
-                        </td>
+        <div>
+            <p>
+                Nom : ${personne.nom}
+            </p>
+            <br>
+            <p>
+                Prénom : ${personne.prenom}
+            </p>
+            <br>
+            <p>
+                Mail :  ${personne.mail}
+            </p>
+            <br>
+            <p>
+                Numéro de compte : ${personne.nb_compte}
+            </p>
+            <br>
+            <p>
+                Numéro de carte de crédit : ${personne.nb_carte}
+            </p>
+            <br>
+        </div>
 
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
+        <div class="row">
+            <div class="col-sm-8">
+                <table border="2">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Votre compte</th>
+                            <th class="text-center">Montant</th>
+                            <th class="text-center">Autorisation de découvert</th>
+                            <th class="text-center">Carte associée</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="colid">2543-TR</td>
+                            <td class="col2">5321.66</td>
+                            <td class="col2">Non autorisé</td>
+                            <td class="col3">Carte MasterCard Gold</td>
 
-                </tbody>
-            </table>
-            <li><h6>Conseillers désactivés</h6></li>
-
-            <table border="2">
-                <thead>
-                    <tr>
-                        <th class="text-center">id</th>
-                        <th class="text-center">Nom</th>
-                        <th class="text-center">Prenom</th>
-                        <th class="text-center">Adresse mail</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="colid">1</td>
-                        <td class="col2">Sarkozy</td>
-                        <td class="col2">Nicolas</td>
-                        <td class="col3" title="nicolas.sarkozydu75@gmail.com">nicolas.sarkozydu75@gmail.com</td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-danger">désactiver</button>
-                        </td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-warning">modifier</button>
-                        </td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-danger">supprimer</button>
-                        </td>
-
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
-
-                </tbody>
-            </table>
-
-
-        </ul>
-
-
-        <div class="modal fade" id="modalCreationConseiller" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Création d'un conseiller</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form action="InscriptionConseiller" method="POST">
-                            <div class="form-group">
-                                <input name="nomC" type="text" placeholder="nom" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input name="prenomC" type="text" placeholder="prenom" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input name="loginC" type="text" placeholder="login" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <input name="mdpC" type="password" placeholder="password" class="form-control">
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
-
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <h5>Contacter votre conseiller dédié !</h5>
+                <button type="button" class="btn-success">Message</button>
+                <br>
+                <button type="button" class="btn-success">Mail</button>
             </div>
         </div>
     </body>
