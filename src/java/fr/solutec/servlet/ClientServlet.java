@@ -6,21 +6,23 @@
 package fr.solutec.servlet;
 
 import fr.solutec.dao.UserDao;
-import fr.solutec.model.User;
+import fr.solutec.model.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author esic
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/login"})
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "ClientServlet", urlPatterns = {"/homeClient"})
+public class ClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +41,10 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");
+            out.println("<title>Servlet ClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +62,18 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        Client u = (Client) session.getAttribute("userC");
+        
+        if (u != null){
+           
+        request.setAttribute("personne", u);
+        request.getRequestDispatcher("WEB-INF/homeClient.jsp").forward(request, response);
+        }
+        else{
+            request.setAttribute("msg", "non non non");
         request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
 
@@ -75,49 +88,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String log = request.getParameter("login");
-        String mdp = request.getParameter("mdp");
-        PrintWriter out = response.getWriter();
-        
-
-        try {
-
-            User u = UserDao.getByLoginAndPass(log, mdp);
-            
-
-            if (u != null) {
-                
-
-                request.getSession(true).setAttribute("userC", u);
-                
-                
-                switch (u.getType()) {
-                    case "1":
-                        response.sendRedirect("homeAdmin");
-                        break;
-                    case "2":
-                        request.getRequestDispatcher("conseiller.jsp").forward(request, response);
-
-                        break;
-                    case "3":
-                        request.getRequestDispatcher("/WEB-INF/client.jsp").forward(request, response);
-
-                        break;
-
-                    default:
-
-                        request.setAttribute("msg", "La connexion a échouée");
-                }
-
-            } else {
-
-                request.setAttribute("msg", "Le login ou le mot de passe est incorrect");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            out.println("Connexion : " + e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**
