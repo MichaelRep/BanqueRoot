@@ -5,12 +5,8 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.ConseillerDAO;
-import static fr.solutec.dao.ConseillerDAO.validationClient;
-import fr.solutec.model.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "ValidationClient", urlPatterns = {"/ValidationClient"})
-public class ValidationClientServlet extends HttpServlet {
+@WebServlet(name = "ConseillerConsultationClient", urlPatterns = {"/ConseillerConsultationClient"})
+public class ConseillerConsultationClient extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +37,10 @@ public class ValidationClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ValidationClientServlet</title>");            
+            out.println("<title>Servlet ConseillerConsultationClient</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ValidationClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseillerConsultationClient at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,21 +72,7 @@ public class ValidationClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idd = request.getParameter("id");
-        
-        int idu = Integer.parseInt(request.getParameter("id"));
-        
-        
-        
-        try {
-            validationClient(idu);
-            
-            response.sendRedirect("conseillerServlet");
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("Except after tentative de get ALL : " + e.getMessage());
-        }
-        
+        processRequest(request, response);
     }
 
     /**

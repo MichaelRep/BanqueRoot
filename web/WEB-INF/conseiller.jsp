@@ -7,10 +7,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="style.css">
-        <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-                <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -47,40 +47,39 @@
                         <th class="text-center">Nom</th>
                         <th class="text-center">Prenom</th>
                         <th class="text-center">Adresse mail</th>
+                        <th class="text-center">ac mail</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <c:forEach items="${clientsEnAttente}" var="clientEnAttente">
                     <form action="ValidationClient" method="POST">
-                    <imput type="hidden" name="id" value="${clientEnAttente.id}"></imput>
-                        
                         <tr>
-                            <td>${clientEnAttente.id}</td>
-                            <td>${clientEnAttente.nom}</td>
-                            <td>${clientEnAttente.prenom}</td>
-                            <td>${clientEnAttente.login}</td>
-                            <td>
-                                <button class="btn-validation">Activer</button>
-                            </td>
-                            <td>
-                                <button class="btn-danger">supprimer</button>
-                            </td>
+                        
+                        <input type="hidden" name="id" value="${clientEnAttente.id}">
+                        <td>${clientEnAttente.id}</td>
+                        <td>${clientEnAttente.nom}</td>
+                        <td>${clientEnAttente.prenom}</td>
+                        <td>${clientEnAttente.login}</td>
+                        <td>
+                            <button type="submit" class="btn-validation">Activer</button>
+                        </td>
+
                         </tr>
 
-                        </form>
-                    </c:forEach>
+                    </form>
+                </c:forEach>
 
 
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
+                </tr>
+                <tr></tr>
+                <tr></tr>
 
                 </tbody>
             </table>
 
 
-            <li><h6>Clients Validé </h6></li>
+            <li><h6>Clients Validés </h6></li>
             <table border="2">
                 <thead>
                     <tr>
@@ -93,36 +92,28 @@
                 <tbody>
 
                     <c:forEach items="${clientsValide}" var="client">
-
+                    <form action="ConseillerConsultationClient" method="GET">
                         <tr>
                             <td>${client.id}</td>
                             <td>${client.nom}</td>
                             <td>${client.prenom}</td>
                             <td>${client.login}</td>
+                            
                             <td>
                                 <%--<input type="button" src="/Images/croixrouge.jpg"/>
                                 <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                                <button class="btn-danger">Activer</button>
+                                <button class="btn-validation">Consulter</button>
                             </td>
-                            <td>
-                                <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                                <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                                <button class="btn-warning">modifier</button>
-                            </td>
-                            <td>
-                                <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                                <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                                <button class="btn-danger">supprimer</button>
-                            </td>
+
                         </tr>
+                    </form>
+
+                </c:forEach>
 
 
-                    </c:forEach>
-
-
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
+                </tr>
+                <tr></tr>
+                <tr></tr>
 
                 </tbody>
             </table>
