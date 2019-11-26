@@ -5,20 +5,26 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.AdminDao;
+import fr.solutec.dao.UserDao;
+import fr.solutec.model.Conseiller;
+import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author esic
  */
-@WebServlet(name = "ConseillerServlet", urlPatterns = {"/homeConseiller"})
-public class ConseillerServlet extends HttpServlet {
+@WebServlet(name = "ConseillerServlet", urlPatterns = {"/homeAdmin"})
+public class AdminServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +43,7 @@ public class ConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerServlet</title>");            
+            out.println("<title>Servlet ConseillerServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
@@ -58,7 +64,27 @@ public class ConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession(true);
+        User u = (User) session.getAttribute("userC");
+        System.out.println("fr.solutec.servlet.AdminServlet.doGet()");
+
+        if (u != null) {
+
+            try {
+                List<Conseiller> conseillers = AdminDao.getAllConseillers();
+                request.setAttribute("conseillers", conseillers);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("Exception après tentative d'affichage des conseillers : " + e.getMessage());
+            }
+
+            request.setAttribute("personne", u);
+            request.getRequestDispatcher("admin.jsp").forward(request, response);
+
+        } else {
+            request.setAttribute("msg", "Petit malin va");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**

@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author esic
  */
-public class ConseillerDao {
+public class AdminDao {
 
     public static void insertConseiller(Conseiller conseiller)
             throws SQLException {

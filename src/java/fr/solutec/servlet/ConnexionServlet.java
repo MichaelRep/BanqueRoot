@@ -78,10 +78,13 @@ public class ConnexionServlet extends HttpServlet {
 
         String log = request.getParameter("login");
         String mdp = request.getParameter("mdp");
+        PrintWriter out = response.getWriter();
+        
 
         try {
 
             User u = UserDao.getByLoginAndPass(log, mdp);
+            out.println("CECI EST UN TEST");
 
             if (u != null) {
 
@@ -90,7 +93,7 @@ public class ConnexionServlet extends HttpServlet {
                 
                 switch (u.getType()) {
                     case "1":
-                        request.getRequestDispatcher("admin.jsp").forward(request, response);
+                        response.sendRedirect("homeAdmin");
                         break;
                     case "2":
                         request.getRequestDispatcher("conseiller.jsp").forward(request, response);
@@ -112,7 +115,6 @@ public class ConnexionServlet extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } catch (Exception e) {
-            PrintWriter out = response.getWriter();
             out.println("Connexion : " + e.getMessage());
         }
     }
