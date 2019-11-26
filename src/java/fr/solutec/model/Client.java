@@ -30,6 +30,9 @@ public class Client extends User{
         super(nom, prenom, login, mdp,type);
         this.valide = false;
     }
+     public Client() {
+        
+    }
     
 
     public int getPhoto() {
