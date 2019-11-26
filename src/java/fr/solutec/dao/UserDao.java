@@ -53,7 +53,7 @@ public class UserDao {
     public static void  insertUser (User user)
     throws SQLException{
         
-        String sql = "INSERT INTO utilisateur (nom, prenom, login_mail, mdp) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO utilisateur (nom, prenom, login_mail, mdp) VALUES (?,?,?,?,?);";
         
         Connection connexion =AccessBD.getConnection();
         
@@ -63,6 +63,7 @@ public class UserDao {
         requette.setString (2,user.getPrenom());
         requette.setString (3,user.getLogin());
         requette.setString (4,user.getMdp());
+        requette.setString (5,user.getType());
                
         requette.execute();       
         
@@ -87,7 +88,7 @@ public class UserDao {
    public static boolean  utilisateurDejaExistant (String log)
     throws SQLException{ 
         
-        String sql = "SELECT COUNT(*) from utilisateur WHERE login_mail=?";
+        String sql = "SELECT COUNT(*) as nb from utilisateur WHERE login_mail=?";
         
         Connection connexion =AccessBD.getConnection();
         
@@ -96,6 +97,16 @@ public class UserDao {
         requette.setString (1,log);
          
         ResultSet rs =requette.executeQuery();     
+        
+        if (rs.next()){
+            if (rs.getInt("nb")==0){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }
         
         return true;
     }

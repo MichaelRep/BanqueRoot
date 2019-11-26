@@ -6,6 +6,7 @@
 package fr.solutec.servlet;
 
 import fr.solutec.dao.UserDao;
+import static fr.solutec.dao.UserDao.utilisateurDejaExistant;
 import fr.solutec.model.Client;
 import fr.solutec.model.User;
 import java.io.IOException;
@@ -79,21 +80,24 @@ public class InscriptionServlet extends HttpServlet {
         String prenom=request.getParameter("prenom");
         String log=request.getParameter("login");
         String mdp=request.getParameter("mdp");
-        
-        Client cl =new Client( nom, prenom, log, mdp);
+        String typ="3";
+        Client cl =new Client( nom, prenom, log, mdp,typ);
         
         try {
-            //if (utilisateurDejaExistant(log))
-            //{
+            
+            if (utilisateurDejaExistant(log))
+            {
+                 
             UserDao.insertUser(cl);
             UserDao.insertClient(cl);
-            //response.sendRedirect("login");
-            //response.sendRedirect("/login");
             response.sendRedirect("login");
-            //}
-           // else{
-            
-            //}
+            }
+            else{
+                
+                request.setAttribute("msgInscription", "Utilisateur déjà existant");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                
+            }
             
         } catch (Exception e) {
             PrintWriter out = response.getWriter();

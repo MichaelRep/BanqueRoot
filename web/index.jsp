@@ -70,10 +70,10 @@
                                     <input name="mdp" type="password" placeholder="password" class="form-control">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-block">Pas encore pret!!!!!!</button>
+                                <button type="submit" class="btn btn-primary btn-block">Reste à blinder</button>
                                 
                             </form>
-                            <p> ${msg}</p>
+                            <p> ${msgInscription}</p>
                         </div>
                     </div>
                 </div>

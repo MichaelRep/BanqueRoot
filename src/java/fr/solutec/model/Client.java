@@ -13,21 +13,21 @@ public class Client extends User{
     private int photo;
     private boolean valide;
 
-    public Client(int photo, boolean valide, int id, String nom, String prenom, String login, String mdp) {
-        super(id, nom, prenom, login, mdp);
+     public Client(int photo, boolean actif, int id, String nom, String prenom, String login, String mdp, String type) {
+        super(id, nom, prenom, login, mdp, type);
         this.photo = photo;
-        this.valide = valide;
+        this.valide = false;
     }
 
-    public Client(int photo, boolean valide, String nom, String prenom, String login, String mdp) {
-        super(nom, prenom, login, mdp);
+    public Client(int photo, boolean actif, String nom, String prenom, String login, String mdp, String type) {
+        super(nom, prenom, login, mdp, type);
         this.photo = photo;
-        this.valide = valide;
+        this.valide = false;
     }
     
     
-    public Client(String nom, String prenom, String login, String mdp) {
-        super(nom, prenom, login, mdp);
+    public Client(String nom, String prenom, String login, String mdp,String type) {
+        super(nom, prenom, login, mdp,type);
         this.valide = false;
     }
     
