@@ -3,7 +3,8 @@
     Created on : 26 nov. 2019, 09:26:06
     Author     : esic
 --%>
-
+<%@page import="fr.solutec.model.User"%>
+<%@page import="fr.solutec.model.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
