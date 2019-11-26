@@ -59,7 +59,7 @@
                 <tbody>
 
                     <c:forEach items="${conseillers}" var="conseiller">
-                        <c:if test= "${membre.actif}=true">
+
                             <tr>
                                 <td>${conseiller.id}</td>
                                 <td>${conseiller.nom}</td>
@@ -67,9 +67,6 @@
                                 <td>${conseiller.login}</td>
                             </tr>
 
-
-
-                        </c:if>
 
                     </c:forEach>
                 <td>

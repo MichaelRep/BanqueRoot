@@ -24,6 +24,11 @@ public class Conseiller extends User {
         this.photo = photo;
         this.actif = actif;
     }
+
+    @Override
+    public String toString() {
+        return "Conseiller{" + "photo=" + photo + ", actif=" + actif + '}';
+    }
     
 
     public int getPhoto() {
