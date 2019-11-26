@@ -57,14 +57,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <c:forEach items="${membres}" var="membre">
-                            <c:if test= "${membre.actif}='2'">
+
+                    <c:forEach items="${conseillers}" var="conseiller">
+                        <c:if test= "${membre.actif}=true">
                             <tr>
-                                <td>${membre.id}</td>
-                                <td>${membre.nom}</td>
-                                <td>${membre.prenom}</td>
-                                <td>${membre.login}</td>
+                                <td>${conseiller.id}</td>
+                                <td>${conseiller.nom}</td>
+                                <td>${conseiller.prenom}</td>
+                                <td>${conseiller.login}</td>
                             </tr>
 
 

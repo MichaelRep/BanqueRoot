@@ -5,7 +5,7 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.ConseillerDao;
+import fr.solutec.dao.AdminDao;
 import fr.solutec.dao.UserDao;
 import fr.solutec.model.Conseiller;
 import java.io.IOException;
@@ -87,7 +87,7 @@ public class InscriptionConseiller extends HttpServlet {
             //if (utilisateurDejaExistant(log))
             //{
             UserDao.insertUser(cons);
-            ConseillerDao.insertConseiller(cons);
+            AdminDao.insertConseiller(cons);
             //response.sendRedirect("login");
             //response.sendRedirect("/login");
             response.sendRedirect("InscriptionConseiller");
