@@ -136,7 +136,7 @@
                         <h4 class="modal-title">Création d'un conseiller</h4>
                     </div>
                     <div class="modal-body">
-                        <form <%--action="CreationConseiller" method="POST"--%>>
+                        <form action="InscriptionConseiller" method="POST">
                             <div class="form-group">
                                 <input name="nomC" type="text" placeholder="nom" class="form-control">
                             </div>
@@ -152,10 +152,11 @@
                             
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
+                                     <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
+                                   
                                 </div>
                                 
                             </div>

@@ -60,6 +60,7 @@ public class InscriptionConseiller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getRequestDispatcher("admin.jsp").forward(request, response);
     }
 
     /**
@@ -79,23 +80,23 @@ public class InscriptionConseiller extends HttpServlet {
         String log = request.getParameter("loginC");
         String mdp = request.getParameter("mdpC");
 
-        Conseiller cl = new Conseiller(nom, prenom, log, mdp);
+        Conseiller cons = new Conseiller(nom, prenom, log, mdp,"2");
 
         try {
             //if (utilisateurDejaExistant(log))
             //{
-            UserDao.insertUser(cl);
-            UserDao.insertClient(cl);
+            UserDao.insertUser(cons);
+            UserDao.insertConseiller(cons);
             //response.sendRedirect("login");
             //response.sendRedirect("/login");
-            response.sendRedirect("login");
+            response.sendRedirect("InscriptionConseiller");
             //}
             // else{
 
             //}
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println("Exxept afetr tentative d'inscription : " + e.getMessage());
+            out.println("Exception après tentative de création conseiller : " + e.getMessage());
         }
 
     }
