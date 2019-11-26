@@ -44,7 +44,7 @@
         </div>  
         <div>
             <p>
-                Nom : ${personne.nom}
+                Nom : ${utilisateur.nom}
             </p>
             <br>
             <p>
