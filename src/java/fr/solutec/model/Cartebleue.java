@@ -1,34 +1,29 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.solutec.model;
 
+package fr.solutec.model;
 /**
  *
  * @author esic
  */
 public class Cartebleue {
-    private int id_compte;
     private int num_carte;
     private boolean statut;
+    private Compte compte;
 
     public Cartebleue() {
     }
 
-    public Cartebleue(int id_compte, int num_carte, boolean statut) {
-        this.id_compte = id_compte;
+    public Cartebleue(int num_carte, boolean statut, Compte compte) {
         this.num_carte = num_carte;
         this.statut = statut;
-    }
-
-    public int getId_compte() {
-        return id_compte;
-    }
-
-    public void setId_compte(int id_compte) {
-        this.id_compte = id_compte;
+        this.compte = compte;
     }
 
     public int getNum_carte() {
@@ -46,7 +41,17 @@ public class Cartebleue {
     public void setStatut(boolean statut) {
         this.statut = statut;
     }
+
+    public Compte getCompte() {
+        return compte;
+    }
+
+    public void setCompte(Compte compte) {
+        this.compte = compte;
+    }
     
+    
+
     
     
 }

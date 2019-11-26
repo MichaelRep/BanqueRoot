@@ -12,30 +12,25 @@ import java.sql.Date;
  * @author esic
  */
 public class Histo_conseiller {
-    private int id_conseiller;
+    private Conseiller conseiller;
     private boolean type;
     private Date date;
 
     public Histo_conseiller() {
     }
 
-    public Histo_conseiller(boolean type, Date date) {
+    public Histo_conseiller(Conseiller conseiller, boolean type, Date date) {
+        this.conseiller = conseiller;
         this.type = type;
         this.date = date;
     }
 
-    public Histo_conseiller(int id_conseiller, boolean type, Date date) {
-        this.id_conseiller = id_conseiller;
-        this.type = type;
-        this.date = date;
+    public Conseiller getConseiller() {
+        return conseiller;
     }
 
-    public int getId_conseiller() {
-        return id_conseiller;
-    }
-
-    public void setId_conseiller(int id_conseiller) {
-        this.id_conseiller = id_conseiller;
+    public void setConseiller(Conseiller conseiller) {
+        this.conseiller = conseiller;
     }
 
     public boolean isType() {
@@ -53,6 +48,7 @@ public class Histo_conseiller {
     public void setDate(Date date) {
         this.date = date;
     }
+    
     
     
 }
