@@ -45,6 +45,10 @@ public class Conseiller extends User {
     public Conseiller(String nom, String prenom, String login, String mdp, String type) {
         super(nom,prenom,login,mdp,type);
     }
+
+    public Conseiller() {
+        super();
+    }
     
     
     

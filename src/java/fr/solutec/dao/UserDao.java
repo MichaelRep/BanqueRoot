@@ -44,7 +44,7 @@ public class UserDao {
             u.setNom(rs.getString("Nom"));
             u.setPrenom(rs.getString("Prenom"));
             u.setLogin(rs.getString("login_mail"));
-            u.setLogin(rs.getString("type"));
+            u.setType(rs.getString("type"));
 
         }
                 
@@ -89,21 +89,7 @@ public class UserDao {
         
     }
    
-   public static void  insertConseiller (Conseiller conseiller)
-    throws SQLException{ 
-        
-        String sql = "INSERT INTO conseiller (id_utilisateur,photo, actif) VALUES ((SELECT distinct id FROM utilisateur WHERE login_mail=?),NULL,false);";
-        out.println(sql);
-        Connection connexion =AccessBD.getConnection();
-        
-        PreparedStatement requette = connexion.prepareStatement(sql);
-        
-                requette.setString (1,conseiller.getLogin());
-        
-               
-        requette.execute();     
-        
-    }
+   
    
    public static boolean  utilisateurDejaExistant (String log)
     throws SQLException{ 

@@ -82,23 +82,30 @@ public class ConnexionServlet extends HttpServlet {
         try {
 
             User u = UserDao.getByLoginAndPass(log, mdp);
-            switch (u.getType()) {
-                case "1":
-                    response.sendRedirect("admin");
-                    break;
-                case "2":
-                    response.sendRedirect("conseiller");
-                    break;
-                case "3":
-                    response.sendRedirect("client");
-                    break;
 
-            }
             if (u != null) {
 
                 request.getSession(true).setAttribute("userC", u);
+                
+                
+                switch (u.getType()) {
+                    case "1":
+                        request.getRequestDispatcher("admin.jsp").forward(request, response);
+                        break;
+                    case "2":
+                        request.getRequestDispatcher("conseiller.jsp").forward(request, response);
 
-                response.sendRedirect("home");
+                        break;
+                    case "3":
+                        request.getRequestDispatcher("client.jsp").forward(request, response);
+
+                        break;
+
+                    default:
+
+                        request.setAttribute("msg", "La connexion a échouée");
+                }
+
             } else {
 
                 request.setAttribute("msg", "Le login ou le mot de passe est incorrect");

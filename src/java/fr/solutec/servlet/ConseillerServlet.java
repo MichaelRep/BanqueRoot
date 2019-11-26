@@ -5,9 +5,6 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.ConseillerDao;
-import fr.solutec.dao.UserDao;
-import fr.solutec.model.Conseiller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "InscriptionConseiller", urlPatterns = {"/InscriptionConseiller"})
-public class InscriptionConseiller extends HttpServlet {
+@WebServlet(name = "ConseillerServlet", urlPatterns = {"/homeConseiller"})
+public class ConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +37,10 @@ public class InscriptionConseiller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InscriptionConseiller</title>");
+            out.println("<title>Servlet ConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InscriptionConseiller at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +58,7 @@ public class InscriptionConseiller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("admin.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -75,31 +72,7 @@ public class InscriptionConseiller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String nom = request.getParameter("nomC");
-        String prenom = request.getParameter("prenomC");
-        String log = request.getParameter("loginC");
-        String mdp = request.getParameter("mdpC");
-
-        Conseiller cons = new Conseiller(nom, prenom, log, mdp,"2");
-
-        try {
-            //if (utilisateurDejaExistant(log))
-            //{
-            UserDao.insertUser(cons);
-            ConseillerDao.insertConseiller(cons);
-            //response.sendRedirect("login");
-            //response.sendRedirect("/login");
-            response.sendRedirect("InscriptionConseiller");
-            //}
-            // else{
-
-            //}
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("Exception après tentative de création conseiller : " + e.getMessage());
-        }
-
+        processRequest(request, response);
     }
 
     /**
