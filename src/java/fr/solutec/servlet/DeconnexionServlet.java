@@ -5,8 +5,6 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.UserDao;
-import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author esic
  */
-@WebServlet(name = "ConnexionServlet", urlPatterns = {"/login"})
-public class ConnexionServlet extends HttpServlet {
+@WebServlet(name = "DeconnexionServlet", urlPatterns = {"/deco"})
+public class DeconnexionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class ConnexionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConnexionServlet</title>");
+            out.println("<title>Servlet DeconnexionServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConnexionServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeconnexionServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,8 +58,8 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        request.getSession().invalidate();
+        response.sendRedirect("login");
     }
 
     /**
@@ -75,39 +73,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String log = request.getParameter("login");
-        String mdp = request.getParameter("mdp");
-
-        try {
-
-            User u = UserDao.getByLoginAndPass(log, mdp);
-            switch (u.getType()) {
-                case "1":
-                    response.sendRedirect("admin");
-                    break;
-                case "2":
-                    response.sendRedirect("conseiller");
-                    break;
-                case "3":
-                    response.sendRedirect("client");
-                    break;
-
-            }
-            if (u != null) {
-
-                request.getSession(true).setAttribute("userC", u);
-
-                response.sendRedirect("home");
-            } else {
-
-                request.setAttribute("msg", "Le login ou le mot de passe est incorrect");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("Connexion : " + e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**
