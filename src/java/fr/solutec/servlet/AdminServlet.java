@@ -11,6 +11,7 @@ import fr.solutec.model.Conseiller;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,15 +67,23 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("userC");
-        System.out.println("fr.solutec.servlet.AdminServlet.doGet()");
+        PrintWriter out = response.getWriter();
+        
 
         if (u != null) {
-
+           
             try {
+                
+
                 List<Conseiller> conseillers = AdminDao.getAllConseillers();
                 request.setAttribute("conseillers", conseillers);
+//                for(Conseiller c :conseillers){
+//                    out.println(c.getNom());
+//                    out.println(c.getPrenom());
+//                }
+                
+
             } catch (Exception e) {
-                PrintWriter out = response.getWriter();
                 out.println("Exception après tentative d'affichage des conseillers : " + e.getMessage());
             }
 
@@ -82,7 +91,7 @@ public class AdminServlet extends HttpServlet {
             request.getRequestDispatcher("admin.jsp").forward(request, response);
 
         } else {
-            request.setAttribute("msg", "Petit malin va");
+            request.setAttribute("msg", "Rentrez des identifiants valides.");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

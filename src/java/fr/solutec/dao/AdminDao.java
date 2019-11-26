@@ -38,7 +38,7 @@ public class AdminDao {
     
     public static List<Conseiller> getAllConseillers() throws SQLException{
         List<Conseiller> conseillers = new ArrayList<>();
-        String sql = "SELECT * FROM personne";
+        String sql = "SELECT * FROM utilisateur WHERE type='2'";
         Connection connexion = AccessBD.getConnection();
         
         Statement requete = connexion.createStatement();
@@ -47,10 +47,10 @@ public class AdminDao {
         
         while (rs.next()) {
             Conseiller c =new Conseiller();
-            c.setId(rs.getInt("idpersonne"));
+            c.setId(rs.getInt("id"));
             c.setNom(rs.getString("nom"));
             c.setPrenom(rs.getString("prenom"));
-            c.setLogin(rs.getString("login"));
+            c.setLogin(rs.getString("login_mail"));
             
             conseillers.add(c);
         }
