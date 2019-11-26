@@ -4,6 +4,7 @@
     Author     : esic
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -57,29 +58,39 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="colid">1</td>
-                        <td class="col2">Sarkozy</td>
-                        <td class="col2">Nicolas</td>
-                        <td class="col3" title="nicolas.sarkozydu75@gmail.com">nicolas.sarkozydu75@gmail.com</td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-danger">désactiver</button>
-                        </td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-warning">modifier</button>
-                        </td>
-                        <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                            <button class="btn-danger">supprimer</button>
-                        </td>
+                        <c:forEach items="${membres}" var="membre">
+                            <c:if test= "${membre.actif}='2'">
+                            <tr>
+                                <td>${membre.id}</td>
+                                <td>${membre.nom}</td>
+                                <td>${membre.prenom}</td>
+                                <td>${membre.login}</td>
+                            </tr>
 
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
+
+
+                        </c:if>
+
+                    </c:forEach>
+                <td>
+                    <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                    <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                    <button class="btn-danger">désactiver</button>
+                </td>
+                <td>
+                    <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                    <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                    <button class="btn-warning">modifier</button>
+                </td>
+                <td>
+                    <%--<input type="button" src="/Images/croixrouge.jpg"/>
+                    <button style="background: url(/Images/croixrouge.jpg)"/>--%>
+                    <button class="btn-danger">supprimer</button>
+                </td>
+
+                </tr>
+                <tr></tr>
+                <tr></tr>
 
                 </tbody>
             </table>
@@ -149,16 +160,16 @@
                             <div class="form-group">
                                 <input name="mdpC" type="password" placeholder="password" class="form-control">
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-sm-6">
-                                     <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
                                 </div>
                                 <div class="col-sm-6">
                                     <button type="submit" class="btn btn-block btn-success">Valider</button>
-                                   
+
                                 </div>
-                                
+
                             </div>
                         </form>
                     </div>

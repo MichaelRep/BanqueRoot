@@ -168,9 +168,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login_mail`, `mdp`,`type`) VALUES
-(1, 'Mangeot', 'Martin', 'martin.mangeot.6@gmail.com', 'test1','administrateur'),
-(2, 'Danlsak', 'Germain', 'gdanlsak@gmail.com', 'conseil1','conseiller'),
-(3, 'Time', 'Vincent', 'vtime@gmail.com', 'client1','client');
+(1, 'Mangeot', 'Martin', 'martin.mangeot.6@gmail.com', 'test1','1'),
+(2, 'Danlsak', 'Germain', 'gdanlsak@gmail.com', 'conseil1','2'),
+(3, 'Time', 'Vincent', 'vtime@gmail.com', 'client1','3');
 
 --
 -- Contraintes pour les tables exportées
