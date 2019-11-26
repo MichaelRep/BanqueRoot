@@ -49,7 +49,6 @@ public class ConseillerDAO {
         return cli;
     }
 
-
     public static List<Client> getAllClientValide() throws SQLException {
         List<Client> cli = new ArrayList<>();
 
