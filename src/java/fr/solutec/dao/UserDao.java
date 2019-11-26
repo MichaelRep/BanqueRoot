@@ -25,7 +25,7 @@ public class UserDao {
     throws SQLException{
         User u =null;
         
-        String sql = "SELECT * FROM utilisateur WHERE mail=? AND mdp=?";
+        String sql = "SELECT * FROM utilisateur WHERE login_mail=? AND mdp=?";
         
         
         Connection connexion =AccessBD.getConnection();
@@ -38,10 +38,11 @@ public class UserDao {
         
         if (rs.next()){
             u= new User();
-            u.setId(rs.getInt("Idpersonne"));
+            u.setId(rs.getInt("id"));
             u.setNom(rs.getString("Nom"));
             u.setPrenom(rs.getString("Prenom"));
-            u.setLogin(rs.getString("mail"));
+            u.setLogin(rs.getString("login_mail"));
+            u.setLogin(rs.getString("type"));
         }
                 
                 
