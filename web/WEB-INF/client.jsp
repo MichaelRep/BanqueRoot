@@ -27,7 +27,7 @@
         <h1>Votre compte</h1>
         <div class="row">
 
-            <div class="col-sm-2"><h5> Bienvenue ${personne.Prenom} ${personne.Nom} ! </h5></div>
+            <div class="col-sm-2"><h5> Bienvenue ${personne.prenom} ${personne.nom} ! </h5></div>
             <div class="col-sm-8"></div>
             <div class="col-sm-2">
                 <button type="button" onclick="location.href = 'deco'" class="btn btn-danger">Déconnexion</button>
@@ -45,7 +45,7 @@
         </div>  
         <div>
             <p>
-                Nom : ${utilisateur.nom}
+                Nom : ${personne.nom}
             </p>
             <br>
             <p>

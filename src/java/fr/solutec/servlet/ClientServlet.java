@@ -68,7 +68,7 @@ public class ClientServlet extends HttpServlet {
         if (u != null){
            
         request.setAttribute("personne", u);
-        request.getRequestDispatcher("WEB-INF/homeClient.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
         }
         else{
             request.setAttribute("msg", "non non non");
