@@ -44,7 +44,7 @@ public class UserDao {
             u.setNom(rs.getString("Nom"));
             u.setPrenom(rs.getString("Prenom"));
             u.setLogin(rs.getString("login_mail"));
-            u.setLogin(rs.getString("type"));
+            u.setType(rs.getString("type"));
 
         }
                 
