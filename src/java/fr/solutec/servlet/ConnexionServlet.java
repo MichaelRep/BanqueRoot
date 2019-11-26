@@ -100,7 +100,7 @@ public class ConnexionServlet extends HttpServlet {
                         response.sendRedirect("conseillerServlet");
                         break;
                     case "3":
-                        response.sendRedirect("ClientServlet");
+                        response.sendRedirect("homeClient");
                         break;
 
                     default:

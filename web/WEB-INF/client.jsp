@@ -53,15 +53,15 @@
             </p>
             <br>
             <p>
-                Mail :  ${personne.mail}
+                Mail :  ${personne.login}
             </p>
             <br>
             <p>
-                Numéro de compte : ${personne.nb_compte}
+                Numéro de compte : 
             </p>
             <br>
             <p>
-                Numéro de carte de crédit : ${personne.nb_carte}
+                Numéro de carte de crédit : 
             </p>
             <br>
         </div>
