@@ -59,13 +59,19 @@
                 <tbody>
 
                     <c:forEach items="${conseillers}" var="conseiller">
-
+                        
+                        <c:if test="${conseiller.actif=true}">
+                            
                             <tr>
                                 <td>${conseiller.id}</td>
                                 <td>${conseiller.nom}</td>
                                 <td>${conseiller.prenom}</td>
-                                <td>${conseiller.login}</td>
+                                <td>${conseiller.actif}</td>
                             </tr>
+                            
+                        </c:if>
+
+                            
 
 
                     </c:forEach>

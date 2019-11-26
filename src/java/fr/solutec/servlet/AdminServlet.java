@@ -80,6 +80,7 @@ public class AdminServlet extends HttpServlet {
 //                for(Conseiller c :conseillers){
 //                    out.println(c.getNom());
 //                    out.println(c.getPrenom());
+//                    out.println(c.isActif());
 //                }
                 
 
@@ -87,7 +88,7 @@ public class AdminServlet extends HttpServlet {
                 out.println("Exception après tentative d'affichage des conseillers : " + e.getMessage());
             }
 
-            request.setAttribute("personne", u);
+            //request.setAttribute("personne", u);
             request.getRequestDispatcher("admin.jsp").forward(request, response);
 
         } else {
