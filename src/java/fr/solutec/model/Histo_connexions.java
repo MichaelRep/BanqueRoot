@@ -13,18 +13,14 @@ import java.sql.Date;
  */
 public class Histo_connexions {
     private Date date;
-    private int id_utilisateur;
+    private Client client;
 
     public Histo_connexions() {
     }
 
-    public Histo_connexions(Date date) {
+    public Histo_connexions(Date date, Client client) {
         this.date = date;
-    }
-
-    public Histo_connexions(Date date, int id_utilisateur) {
-        this.date = date;
-        this.id_utilisateur = id_utilisateur;
+        this.client = client;
     }
 
     public Date getDate() {
@@ -35,13 +31,14 @@ public class Histo_connexions {
         this.date = date;
     }
 
-    public int getId_utilisateur() {
-        return id_utilisateur;
+    public Client getClient() {
+        return client;
     }
 
-    public void setId_utilisateur(int id_utilisateur) {
-        this.id_utilisateur = id_utilisateur;
+    public void setClient(Client client) {
+        this.client = client;
     }
+    
     
             
     

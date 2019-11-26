@@ -10,7 +10,7 @@ package fr.solutec.model;
  * @author esic
  */
 public class Compte {
-    private int id_client;
+    private Client client;
     private int num_compte;
     private int montant;
     private boolean decouvert_autorise;
@@ -18,25 +18,19 @@ public class Compte {
     public Compte() {
     }
 
-    public Compte(int num_compte, int montant, boolean decouvert_autorise) {
+    public Compte(Client client, int num_compte, int montant, boolean decouvert_autorise) {
+        this.client = client;
         this.num_compte = num_compte;
         this.montant = montant;
         this.decouvert_autorise = decouvert_autorise;
     }
 
-    public Compte(int id_client, int num_compte, int montant, boolean decouvert_autorise) {
-        this.id_client = id_client;
-        this.num_compte = num_compte;
-        this.montant = montant;
-        this.decouvert_autorise = decouvert_autorise;
+    public Client getClient() {
+        return client;
     }
 
-    public int getId_client() {
-        return id_client;
-    }
-
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public int getNum_compte() {
@@ -62,6 +56,7 @@ public class Compte {
     public void setDecouvert_autorise(boolean decouvert_autorise) {
         this.decouvert_autorise = decouvert_autorise;
     }
+
     
     
     
