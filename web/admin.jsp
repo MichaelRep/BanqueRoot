@@ -31,7 +31,7 @@
             <div class="col-sm-2"><h5> Admininistrateur </h5></div>
             <div class="col-sm-8"></div>
             <div class="col-sm-2">
-                <button type="button" <%--onclick="location.href = 'deco'"--%> class="btn btn-danger">Déconnexion</button>
+                <button type="button" onclick="location.href = 'deco'" class="btn btn-danger">Déconnexion</button>
 
             </div>
 

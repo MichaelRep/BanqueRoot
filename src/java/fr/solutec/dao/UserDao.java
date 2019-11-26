@@ -8,6 +8,7 @@ package fr.solutec.dao;
 import fr.solutec.model.Client;
 import fr.solutec.model.Conseiller;
 import fr.solutec.model.User;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,7 +57,7 @@ public class UserDao {
     public static void  insertUser (User user)
     throws SQLException{
         
-        String sql = "INSERT INTO utilisateur (nom, prenom, login_mail, mdp) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO utilisateur (nom, prenom, login_mail, mdp,type) VALUES (?,?,?,?,?);";
         
         Connection connexion =AccessBD.getConnection();
         
@@ -92,7 +93,7 @@ public class UserDao {
     throws SQLException{ 
         
         String sql = "INSERT INTO conseiller (id_utilisateur,photo, actif) VALUES ((SELECT distinct id FROM utilisateur WHERE login_mail=?),NULL,false);";
-        
+        out.println(sql);
         Connection connexion =AccessBD.getConnection();
         
         PreparedStatement requette = connexion.prepareStatement(sql);
