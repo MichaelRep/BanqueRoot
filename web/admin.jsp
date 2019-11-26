@@ -138,16 +138,16 @@
                     <div class="modal-body">
                         <form <%--action="CreationConseiller" method="POST"--%>>
                             <div class="form-group">
-                                <input name="nom" type="text" placeholder="nom" class="form-control">
+                                <input name="nomC" type="text" placeholder="nom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="prenom" type="text" placeholder="prenom" class="form-control">
+                                <input name="prenomC" type="text" placeholder="prenom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="login" type="text" placeholder="login" class="form-control">
+                                <input name="loginC" type="text" placeholder="login" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="mdp" type="password" placeholder="password" class="form-control">
+                                <input name="mdpC" type="password" placeholder="password" class="form-control">
                             </div>
                             
                             <div class="row">
