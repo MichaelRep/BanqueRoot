@@ -31,7 +31,7 @@
             <div class="col-sm-2"><h5> Admininistrateur </h5></div>
             <div class="col-sm-8"></div>
             <div class="col-sm-2">
-                <button type="button" <%--onclick="location.href = 'deco'"--%> class="btn btn-danger">Déconnexion</button>
+                <button type="button" onclick="location.href = 'deco'" class="btn btn-danger">Déconnexion</button>
 
             </div>
 
@@ -136,26 +136,27 @@
                         <h4 class="modal-title">Création d'un conseiller</h4>
                     </div>
                     <div class="modal-body">
-                        <form <%--action="CreationConseiller" method="POST"--%>>
+                        <form action="InscriptionConseiller" method="POST">
                             <div class="form-group">
-                                <input name="nom" type="text" placeholder="nom" class="form-control">
+                                <input name="nomC" type="text" placeholder="nom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="prenom" type="text" placeholder="prenom" class="form-control">
+                                <input name="prenomC" type="text" placeholder="prenom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="login" type="text" placeholder="login" class="form-control">
+                                <input name="loginC" type="text" placeholder="login" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input name="mdp" type="password" placeholder="password" class="form-control">
+                                <input name="mdpC" type="password" placeholder="password" class="form-control">
                             </div>
                             
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
+                                     <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
+                                   
                                 </div>
                                 
                             </div>

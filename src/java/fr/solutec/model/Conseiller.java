@@ -42,6 +42,10 @@ public class Conseiller extends User {
         this.actif = actif;
     }
     
+    public Conseiller(String nom, String prenom, String login, String mdp, String type) {
+        super(nom,prenom,login,mdp,type);
+    }
+    
     
     
 }
