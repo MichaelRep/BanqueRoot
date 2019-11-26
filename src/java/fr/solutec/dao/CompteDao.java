@@ -22,9 +22,9 @@ import java.util.List;
  */
 public class CompteDao {
     
-     public static  Compte getCompte (String id)
+     public static  Compte getCompte (User u)
     throws SQLException{
-        Compte u =null;
+        Compte c =null;
         
         String sql = "SELECT * FROM compte WHERE id_utilisateur=?";
         
@@ -32,16 +32,16 @@ public class CompteDao {
         Connection connexion =AccessBD.getConnection();
         
         PreparedStatement requette = connexion.prepareStatement(sql);
-        requette.setString (1,id);
+        requette.setInt (1,u.getId());
         
         ResultSet rs =requette.executeQuery();
         
         if (rs.next()){
-            u= new Compte();
-            u.setId_client(rs.getInt("id_utilisateur"));
-            u.setNum_compte(rs.getInt("num_compte"));
-            u.setMontant(rs.getString("Nom"));
-            u.setDecouvert_autorise(rs.is("Prenom"));
+            c= new Compte();
+            c.getClient().setId(rs.getInt("id_utilisateur"));
+            c.setNum_compte(rs.getInt("num_compte"));
+            c.setMontant(rs.getInt("montant"));
+            c.setDecouvert_autorise(rs.getBoolean("decouvert_aut"));
 
         }
                 
