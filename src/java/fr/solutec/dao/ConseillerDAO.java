@@ -7,12 +7,16 @@ package fr.solutec.dao;
 
 import fr.solutec.model.Client;
 import fr.solutec.model.Conseiller;
+import fr.solutec.servlet.ChangementActifServlet;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -43,5 +47,23 @@ public class ConseillerDAO {
         }
         
         return cli;
+    }
+    
+    public static void changeEtatActif(int id, boolean actif) throws SQLException{
+        String sql ="";
+        
+        if (actif) {
+            sql = "UPDATE conseiller SET actif='false' WHERE id_utilisateur = " + id + ";";
+            
+        }
+        else{
+            sql = "UPDATE conseiller SET actif='true' WHERE id_utilisateur = " + id + ";";
+            Logger.getLogger(sql);
+        }
+        Connection connexion = AccessBD.getConnection();
+        Statement requete = connexion.createStatement();
+        
+        requete.executeUpdate(sql);
+        
     }
 }

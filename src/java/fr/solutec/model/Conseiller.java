@@ -55,6 +55,16 @@ public class Conseiller extends User {
         super();
     }
     
+    public static void changerActif(Conseiller c){
+        if (c.actif == false){
+            c.actif = true;
+        }
+        else{
+            c.actif = false;
+        }
+        
+    }
+    
     
     
 }

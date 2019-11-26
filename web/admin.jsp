@@ -47,7 +47,7 @@
         </div>  
         <ul>
             <li><h6>Conseillers activés</h6></li>
-            <table border="2">
+            <table id="tableActif" border="2">
                 <thead>
                     <tr>
                         <th class="text-center">id</th>
@@ -59,47 +59,42 @@
                 <tbody>
 
                     <c:forEach items="${conseillers}" var="conseiller">
-                        
-                        <c:if test="${conseiller.actif=true}">
-                            
+
+                        <c:if test="${conseiller.actif==true}">
+                        <form action="ChangementActifServlet" method="POST">
                             <tr>
-                                <td>${conseiller.id}</td>
-                                <td>${conseiller.nom}</td>
-                                <td>${conseiller.prenom}</td>
-                                <td>${conseiller.actif}</td>
+                            <input type="hidden" name="id" value="${conseiller.id}"></input>
+                            <input type="hidden" name="actif" value="${conseiller.actif}"></input>
+                            <td>${conseiller.id}</td>
+                            <td>${conseiller.nom}</td>
+                            <td>${conseiller.prenom}</td>
+                            <td>${conseiller.actif}</td>
+                            <td>
+                                <button class="btn-danger"  >désactiver</button>
+                            </td>
+                            <td>
+                                <button class="btn-warning">modifier</button>
+                            </td>
+                            <td>
+                                <button class="btn-danger">supprimer</button>
+                            </td>
                             </tr>
-                            
-                        </c:if>
+                        </form>
 
-                            
+                    </c:if>
 
 
-                    </c:forEach>
-                <td>
-                    <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                    <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                    <button class="btn-danger">désactiver</button>
-                </td>
-                <td>
-                    <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                    <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                    <button class="btn-warning">modifier</button>
-                </td>
-                <td>
-                    <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                    <button style="background: url(/Images/croixrouge.jpg)"/>--%>
-                    <button class="btn-danger">supprimer</button>
-                </td>
 
-                </tr>
-                <tr></tr>
-                <tr></tr>
+
+                </c:forEach>
+
+
 
                 </tbody>
             </table>
             <li><h6>Conseillers désactivés</h6></li>
 
-            <table border="2">
+            <table id="tableInactif" border="2">
                 <thead>
                     <tr>
                         <th class="text-center">id</th>
@@ -110,29 +105,39 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="colid">1</td>
-                        <td class="col2">Sarkozy</td>
-                        <td class="col2">Nicolas</td>
-                        <td class="col3" title="nicolas.sarkozydu75@gmail.com">nicolas.sarkozydu75@gmail.com</td>
+                        <c:forEach items="${conseillers}" var="conseiller">
+
+                            <c:if test="${conseiller.actif==false}">
+
+                            <tr>
+                        <input type="hidden" name="id" value="${conseiller.id}"></input>
+                        <input type="hidden" name="actif" value="${conseiller.actif}">
+                        <td>${conseiller.id}</td>
+                        <td>${conseiller.nom}</td>
+                        <td>${conseiller.prenom}</td>
+                        <td>${conseiller.actif}</td>
                         <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
                             <button class="btn-danger">désactiver</button>
                         </td>
                         <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
                             <button class="btn-warning">modifier</button>
                         </td>
                         <td>
-                            <%--<input type="button" src="/Images/croixrouge.jpg"/>
-                            <button style="background: url(/Images/croixrouge.jpg)"/>--%>
                             <button class="btn-danger">supprimer</button>
                         </td>
+                        </tr>
 
-                    </tr>
-                    <tr></tr>
-                    <tr></tr>
+                    </c:if>
+
+
+
+
+                </c:forEach>
+
+
+                </tr>
+                <tr></tr>
+                <tr></tr>
 
                 </tbody>
             </table>
