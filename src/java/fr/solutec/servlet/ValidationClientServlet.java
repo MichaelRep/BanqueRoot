@@ -6,10 +6,8 @@
 package fr.solutec.servlet;
 
 import fr.solutec.dao.ConseillerDAO;
-import fr.solutec.dao.UserDao;
+import static fr.solutec.dao.ConseillerDAO.validationClient;
 import fr.solutec.model.Client;
-import fr.solutec.model.Conseiller;
-import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,14 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author esic
  */
-@WebServlet(name = "conseillerServlet", urlPatterns = {"/conseillerServlet"})
-public class conseillerServlet extends HttpServlet {
+@WebServlet(name = "ValidationClient", urlPatterns = {"/ValidationClient"})
+public class ValidationClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +41,10 @@ public class conseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet conseillerServlet</title>");
+            out.println("<title>Servlet ValidationClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet conseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ValidationClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,29 +62,7 @@ public class conseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        HttpSession session = request.getSession(true);
-        User u = (User) session.getAttribute("userC");
-        Conseiller co = new Conseiller();
-        co.setId(u.getId());
-        co.setNom(u.getNom());
-        co.setPrenom(u.getPrenom());
-        co.setLogin(u.getLogin());
-        co.setId(u.getId());
-
-        try {
-            List<Client> clientsEnAttente = ConseillerDAO.getAllClientNonValide();
-            List<Client> clientsValide = ConseillerDAO.getAllClientValide();
-
-            request.setAttribute("clientsEnAttente", clientsEnAttente);
-            request.setAttribute("clientsValide", clientsValide);
-            request.setAttribute("conseiller", co);
-            request.getRequestDispatcher("WEB-INF/conseiller.jsp").forward(request, response);
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("Except after tentative de get ALL : " + e.getMessage());
-        }
-
+        processRequest(request, response);
     }
 
     /**
@@ -101,7 +76,19 @@ public class conseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        
+        
+        try {
+            validationClient(id);
+            
+            request.getRequestDispatcher("WEB-INF/conseiller.jsp").forward(request, response);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("Except after tentative de get ALL : " + e.getMessage());
+        }
+        
     }
 
     /**

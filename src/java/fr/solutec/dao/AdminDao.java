@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,5 +57,23 @@ public class AdminDao {
         }
         
         return conseillers;
+    }
+    
+    public static void changeEtatActif(int id, boolean actif) throws SQLException{
+        String sql ="";
+        
+        if (actif) {
+            sql = "UPDATE conseiller SET actif='false' WHERE id_utilisateur = " + id + ";";
+            
+        }
+        else{
+            sql = "UPDATE conseiller SET actif='true' WHERE id_utilisateur = " + id + ";";
+            Logger.getLogger(sql);
+        }
+        Connection connexion = AccessBD.getConnection();
+        Statement requete = connexion.createStatement();
+        
+        requete.executeUpdate(sql);
+        
     }
 }

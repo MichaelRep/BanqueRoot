@@ -5,6 +5,7 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.AdminDao;
 import fr.solutec.dao.ConseillerDAO;
 import fr.solutec.model.Conseiller;
 import java.io.IOException;
@@ -84,7 +85,7 @@ public class ChangementActifServlet extends HttpServlet {
        PrintWriter out = response.getWriter();
 
         try {
-            ConseillerDAO.changeEtatActif(id, actif);
+            AdminDao.changeEtatActif(id, actif);
         } catch (SQLException ex) {
             Logger.getLogger(ChangementActifServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
