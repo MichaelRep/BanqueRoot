@@ -37,8 +37,10 @@ public class CompteDao {
         ResultSet rs =requette.executeQuery();
         
         if (rs.next()){
+            Client e = new Client();
+            e.setId(rs.getInt("id_utilisateur"));
             c= new Compte();
-            c.getClient().setId(rs.getInt("id_utilisateur"));
+            c.setClient(e);
             c.setNum_compte(rs.getInt("num_compte"));
             c.setMontant(rs.getInt("montant"));
             c.setDecouvert_autorise(rs.getBoolean("decouvert_aut"));

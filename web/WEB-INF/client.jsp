@@ -57,11 +57,11 @@
             </p>
             <br>
             <p>
-                Numéro de compte : 
+                Numéro de compte : ${compte.num_compte}
             </p>
             <br>
             <p>
-                Numéro de carte de crédit : 
+                Numéro de carte de crédit : ${carte.num_carte}
             </p>
             <br>
         </div>
@@ -79,10 +79,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="colid">2543-TR</td>
-                            <td class="col2">5321.66</td>
-                            <td class="col2">Non autorisé</td>
-                            <td class="col3">Carte MasterCard Gold</td>
+                            <td class="colid">${compte.num_compte}</td>
+                            <td class="col2">${compte.montant}</td>
+                            <td class="col2">${compte.decouvert_autorise}</td>
+                            <td class="col3">Carte MasterCard Gold numéro ${carte.num_carte}</td>
 
                         </tr>
                     </tbody>
