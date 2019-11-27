@@ -6,6 +6,8 @@
 package fr.solutec.servlet;
 
 import fr.solutec.dao.ConseillerDAO;
+import static fr.solutec.dao.ConseillerDAO.creationCarte;
+import static fr.solutec.dao.ConseillerDAO.creationCompte;
 import static fr.solutec.dao.ConseillerDAO.validationClient;
 import fr.solutec.model.Client;
 import java.io.IOException;
@@ -84,11 +86,12 @@ public class ValidationClientServlet extends HttpServlet {
         
         try {
             validationClient(idu);
-            
+            creationCompte(idu);
+            creationCarte(idu);
             response.sendRedirect("conseillerServlet");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println("Except after tentative de get ALL : " + e.getMessage());
+            out.println("Except after tentative validation du client : " + e.getMessage());
         }
         
     }

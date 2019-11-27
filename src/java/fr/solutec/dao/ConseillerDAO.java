@@ -85,5 +85,31 @@ public class ConseillerDAO {
         requette.execute();
 
     }
+    
+    public static void creationCompte(int id) throws SQLException {
+
+        String sql = "INSERT INTO compte (id_utilisateur,num_compte, montant, decouvert_aut) VALUES ((SELECT distinct id FROM utilisateur u WHERE u.id=?),666,0,0)";
+        Connection connexion = AccessBD.getConnection();
+
+        PreparedStatement requette = connexion.prepareStatement(sql);
+
+        requette.setInt(1, id);
+
+        requette.execute();
+
+    }
+    
+    public static void creationCarte(int id) throws SQLException {
+
+        String sql = "INSERT INTO carte (id_compte,num_carte, statut) VALUES ((SELECT distinct num_compte FROM compte WHERE id_utilisateur=?),6969,true)";
+        Connection connexion = AccessBD.getConnection();
+
+        PreparedStatement requette = connexion.prepareStatement(sql);
+
+        requette.setInt(1, id);
+
+        requette.execute();
+
+    }
 
 }
