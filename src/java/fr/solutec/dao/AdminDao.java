@@ -86,4 +86,14 @@ public class AdminDao {
         sql ="DELETE FROM utilisateur where id = " + id;
         requete.execute(sql);
     }
+    
+    public static void modifierConseiller(Conseiller cons) throws SQLException{
+        String sql ="UPDATE utilisateur SET nom = '" + cons.getNom() + "', prenom = '" + cons.getPrenom()+ "', login_mail = '" + cons.getLogin()+ "', mdp = '" + cons.getMdp() +"' where id = " + cons.getId() +";";
+        Connection connexion = AccessBD.getConnection();
+        Statement requete = connexion.createStatement();
+        
+        requete.executeUpdate(sql);
+        
+        
+    }
 }
