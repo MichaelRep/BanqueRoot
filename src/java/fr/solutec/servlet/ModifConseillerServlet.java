@@ -5,34 +5,23 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.dao.CarteDao;
+import fr.solutec.dao.AdminDao;
 import fr.solutec.dao.UserDao;
-import fr.solutec.dao.ClientDao;
-import fr.solutec.dao.CompteDao;
-import fr.solutec.model.Cartebleue;
-import fr.solutec.model.Client;
-import fr.solutec.model.Compte;
-import fr.solutec.model.User;
+import fr.solutec.model.Conseiller;
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author esic
+ * @author ESIC
  */
-@WebServlet(name = "ClientServlet", urlPatterns = {"/homeClient"})
-public class ClientServlet extends HttpServlet {
+@WebServlet(name = "ModifConseillerServlet", urlPatterns = {"/ModifConseillerServlet"})
+public class ModifConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,10 +40,10 @@ public class ClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ClientServlet</title>");
+            out.println("<title>Servlet ModifConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,46 +61,7 @@ public class ClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        User u = (User) session.getAttribute("userC");
-        Client c = new Client();
-        try {
-            c = ClientDao.getClient(u);
-        } catch (SQLException e) {
-            out.println("Exception après tentative d'affichage des clients: " + e.getMessage());
-        }
-
-        Compte m = new Compte();
-        try {
-            m = CompteDao.getCompte(u);
-        } catch (SQLException e) {
-            PrintWriter y=response.getWriter();
-            y.println("Exception après tentative d'affichage des comptes : " + e.getMessage());
-        }
-        Cartebleue b = new Cartebleue();
-        try {
-            b = CarteDao.getCarte(m);
-            request.setAttribute("personne", u);
-            request.setAttribute("client", c);
-            request.setAttribute("compte", m);
-            request.setAttribute("carte", b);
-             request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
-        } catch (SQLException e) {
-            out.println("Exception après tentative d'affichage des cartes : " + e.getMessage());
-        }
-/*
-        if (u != null) {
-
-            request.setAttribute("personne", u);
-            request.setAttribute("client", c);
-            request.setAttribute("compte", m);
-            request.setAttribute("carte", b);
-            request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
-        } else {
-            request.setAttribute("msg", "non non non");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }*/
-
+        processRequest(request, response);
     }
 
     /**
@@ -125,7 +75,36 @@ public class ClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int id = Integer.parseInt(request.getParameter("idCo"));
+        String nom = request.getParameter("nomCo");
+        String prenom = request.getParameter("prenomCo");
+        String log = request.getParameter("loginCo");
+        String mdp = request.getParameter("mdpCo");
+        String mdp2 = request.getParameter("mdpCo2");
+        
+//        if(mdp!=mdp2){
+//            request.setAttribute("msg", "Mots de passe différents");
+//            request.get
+//        }
+//        else{
+            Conseiller cons = new Conseiller(id,nom, prenom, log, mdp);
+        try {
+            //if (utilisateurDejaExistant(log))
+            //{
+            AdminDao.modifierConseiller(cons);
+            //response.sendRedirect("login");
+            //response.sendRedirect("/login");
+            response.sendRedirect("homeAdmin");
+            //}
+            // else{
+
+            //}
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("Exception après tentative de modification conseiller : " + e.getMessage());
+        }
+        //}
+        
     }
 
     /**
