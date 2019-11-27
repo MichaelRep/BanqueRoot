@@ -80,8 +80,14 @@ public class ModifConseillerServlet extends HttpServlet {
         String prenom = request.getParameter("prenomCo");
         String log = request.getParameter("loginCo");
         String mdp = request.getParameter("mdpCo");
-
-        Conseiller cons = new Conseiller(id,nom, prenom, log, mdp);
+        String mdp2 = request.getParameter("mdpCo2");
+        
+//        if(mdp!=mdp2){
+//            request.setAttribute("msg", "Mots de passe différents");
+//            request.get
+//        }
+//        else{
+            Conseiller cons = new Conseiller(id,nom, prenom, log, mdp);
         try {
             //if (utilisateurDejaExistant(log))
             //{
@@ -97,6 +103,8 @@ public class ModifConseillerServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("Exception après tentative de modification conseiller : " + e.getMessage());
         }
+        //}
+        
     }
 
     /**

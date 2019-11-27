@@ -28,13 +28,13 @@
             function recup(id) {
                 document.querySelector("#idsup").value = id;
             }
-            
-            function recupAll(id,nom,prenom,login){
+
+            function recupAll(id, nom, prenom, login) {
                 document.querySelector("#inputId").value = id;
                 document.querySelector("#inputNom").value = nom;
                 document.querySelector("#inputPrenom").value = prenom;
                 document.querySelector("#inputLogin").value = login;
-                
+
             }
 
         </script>
@@ -44,7 +44,7 @@
 
     </head>
     <body>
-        
+
         <div class="row">
 
             <div class="col-sm-2"><h5> Admininistrateur </h5></div>
@@ -93,7 +93,7 @@
                             </td>
 
                             <td>
-                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id},'${conseiller.nom}','${conseiller.prenom}','${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
+                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
                             </td>
                             <td>
                                 <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
@@ -140,7 +140,7 @@
                                 <button class="btn-success"  >activer</button>
                             </td>
                             <td>
-                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id},'${conseiller.nom}','${conseiller.prenom}','${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
+                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
                             </td>
                             <td>
                                 <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
@@ -162,6 +162,8 @@
 
 
         </ul>
+
+        <p>${msg}</p>
 
 
 
@@ -242,7 +244,7 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Création d'un conseiller</h4>
+                        <h4 class="modal-title">Modification d'un conseiller</h4>
                     </div>
                     <div class="modal-body">
                         <form action="ModifConseillerServlet" method="POST">
@@ -254,11 +256,15 @@
                                 <input id="inputPrenom" required="required" name="prenomCo" type="text" placeholder="prenom" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input id="inputLogin" required="required" name="loginCo" type="text" placeholder="login" class="form-control">
+                                <input id="inputLogin" required="required" name="loginCo" type="text" placeholder="Adresse mail" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input id="inputPassword" required="required" name="mdpCo" type="password" placeholder="password" class="form-control">
+                                <input id="inputPassword" required="required" name="mdpCo" type="password" placeholder="Mot de passe" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <input id="inputPassword2" required="required" name="mdpCo2" type="password" placeholder="Confirmation mot de passe" class="form-control">
+                            </div>
+
 
                             <div class="row">
                                 <div class="col-sm-6">
