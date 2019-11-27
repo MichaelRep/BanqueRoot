@@ -12,7 +12,9 @@ import static fr.solutec.dao.ConseillerDAO.validationClient;
 import fr.solutec.model.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Math.random;
 import java.util.List;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -81,13 +83,14 @@ public class ValidationClientServlet extends HttpServlet {
         String idd = request.getParameter("id");
         
         int idu = Integer.parseInt(request.getParameter("id"));
-        
-        
+        Random rand = new Random();
+        int numCompte = rand.nextInt(500000);
+        int numCarte = rand.nextInt(8999)+1000;
         
         try {
             validationClient(idu);
-            creationCompte(idu);
-            creationCarte(idu);
+            creationCompte(idu,numCompte);
+            creationCarte(idu,numCarte);
             response.sendRedirect("conseillerServlet");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
