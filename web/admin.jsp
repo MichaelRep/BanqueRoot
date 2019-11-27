@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
                 <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -21,6 +22,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
 
 
         <script>
@@ -44,9 +46,11 @@
 
     </head>
     <body>
-
+        <div class="container">
+            <br>
         <div class="row">
-
+            
+            
             <div class="col-sm-2"><h5> Admininistrateur </h5></div>
             <div class="col-sm-8"></div>
             <div class="col-sm-2">
@@ -55,23 +59,31 @@
             </div>
 
         </div>
+            <br>
+            <br>
         <div class="row">
 
             <div class="col-sm-6 text-center"><h2>Liste des conseillers</h2></div>
             <div class="col-sm-2">
-                <button type="button" class="btn-success" data-toggle ="modal" data-target="#modalCreationConseiller" <%--onclick="location.href = 'deco'"--%>>Ajouter un conseiller</button>
+                <button type="button" class=" btn btn-success" data-toggle ="modal" data-target="#modalCreationConseiller" <%--onclick="location.href = 'deco'"--%>>Ajouter un conseiller</button>
             </div>
+            
 
         </div>  
+            <br>
         <ul>
             <li><h6>Conseillers activés</h6></li>
-            <table id="tableActif" border="2">
+            <table class = "table">
                 <thead class="thead-light">
                     <tr>
                         <th class="text-center">id</th>
                         <th class="text-center">Nom</th>
                         <th class="text-center">Prenom</th>
                         <th class="text-center">Adresse mail</th>
+                        <th class="text-center">Désactiver</th>
+                        <th class="text-center">Modifier</th>
+                        <th class="text-center">Supprimer</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -88,15 +100,15 @@
                             <td class="col2">${conseiller.prenom}</td>
                             <td class="col3">${conseiller.login}</td>
                             <td>
-                                <button name="btn-activate" class="btn-danger"  >désactiver</button>
+                                <button name="btn-activate" class=" btn btn-danger"  ><i class="fa fa-close"></i></button>
 
                             </td>
 
                             <td>
-                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
+                                <button type="button" class=" btn btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" ><i class="fa fa-pencil"></i></button>
                             </td>
                             <td>
-                                <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
+                                <button type="button" class="btn btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" ><i class="fa fa-trash"></i></button>
                             </td>
                             </tr>
                         </form>
@@ -114,13 +126,16 @@
             </table>
             <li><h6>Conseillers désactivés</h6></li>
 
-            <table id="tableInactif" border="2">
+            <table class = "table">
                 <thead class="thead-light">
                     <tr>
                         <th class="text-center">id</th>
                         <th class="text-center">Nom</th>
                         <th class="text-center">Prenom</th>
                         <th class="text-center">Adresse mail</th>
+                        <th class="text-center">Activer</th>
+                        <th class="text-center">Modifier</th>
+                        <th class="text-center">Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -137,13 +152,13 @@
                             <td class="col2">${conseiller.prenom}</td>
                             <td class="col3">${conseiller.login}</td>
                             <td>
-                                <button class="btn-success"  >activer</button>
+                                <button class=" btn btn-success"  ><i class="fa fa-check"></i></button>
                             </td>
                             <td>
-                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
+                                <button type="button" class=" btn btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" ><i class="fa fa-pencil"></i></button>
                             </td>
                             <td>
-                                <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
+                                <button type="button" class="btn btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" ><i class="fa fa-trash"></i></button>
                             </td>
                             </tr>
                         </form>
@@ -162,10 +177,12 @@
 
 
         </ul>
+            
+        </div>
 
         <p>${msg}</p>
 
-
+        
 
 
 
