@@ -140,7 +140,7 @@
                                 <button class="btn-success"  >activer</button>
                             </td>
                             <td>
-                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll('${conseiller.nom}','${conseiller.prenom}','${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
+                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id},'${conseiller.nom}','${conseiller.prenom}','${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
                             </td>
                             <td>
                                 <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
