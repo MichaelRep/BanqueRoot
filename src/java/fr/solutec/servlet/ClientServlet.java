@@ -5,14 +5,21 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.CarteDao;
 import fr.solutec.dao.UserDao;
+import fr.solutec.dao.ClientDao;
+import fr.solutec.dao.CompteDao;
 import fr.solutec.model.Cartebleue;
 import fr.solutec.model.Client;
 import fr.solutec.model.Compte;
 import fr.solutec.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +51,7 @@ public class ClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ClientServlet</title>");            
+            out.println("<title>Servlet ClientServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ClientServlet at " + request.getContextPath() + "</h1>");
@@ -67,22 +74,43 @@ public class ClientServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
         User u = (User) session.getAttribute("userC");
-        Client c =(Client) session.getAttribute("clientC"); 
-        Compte m =(Compte) session.getAttribute("compteC");
-        Cartebleue b = (Cartebleue) session.getAttribute("carteC");
-        
-        
-        if (u != null){
-           
-        request.setAttribute("personne", u);
-        request.setAttribute("client", c);
-        request.setAttribute("compte", m);
-        request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
+        Client c = new Client();
+        try {
+            c = ClientDao.getClient(u);
+        } catch (SQLException e) {
+            out.println("Exception après tentative d'affichage des clients: " + e.getMessage());
         }
-        else{
+
+        Compte m = new Compte();
+        try {
+            m = CompteDao.getCompte(u);
+        } catch (SQLException e) {
+            PrintWriter y=response.getWriter();
+            y.println("Exception après tentative d'affichage des comptes : " + e.getMessage());
+        }
+        Cartebleue b = new Cartebleue();
+        try {
+            b = CarteDao.getCarte(m);
+            request.setAttribute("personne", u);
+            request.setAttribute("client", c);
+            request.setAttribute("compte", m);
+            request.setAttribute("carte", b);
+             request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
+        } catch (SQLException e) {
+            out.println("Exception après tentative d'affichage des cartes : " + e.getMessage());
+        }
+/*
+        if (u != null) {
+
+            request.setAttribute("personne", u);
+            request.setAttribute("client", c);
+            request.setAttribute("compte", m);
+            request.setAttribute("carte", b);
+            request.getRequestDispatcher("WEB-INF/client.jsp").forward(request, response);
+        } else {
             request.setAttribute("msg", "non non non");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }*/
 
     }
 
