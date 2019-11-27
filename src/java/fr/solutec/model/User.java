@@ -22,6 +22,14 @@ public class User {
         return id;
     }
 
+    public User(int id,String nom, String prenom, String login, String mdp) {
+        this.id=id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.login = login;
+        this.mdp = mdp;
+    }
+
 
     public String getType() {
         return type;

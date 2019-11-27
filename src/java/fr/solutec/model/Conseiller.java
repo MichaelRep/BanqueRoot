@@ -25,6 +25,10 @@ public class Conseiller extends User {
         this.actif = actif;
     }
 
+    public Conseiller(int id,String nom, String prenom, String log, String mdp) {
+        super(id,nom, prenom, log, mdp);
+    }
+
     @Override
     public String toString() {
         return "Conseiller{" + "photo=" + photo + ", actif=" + actif + '}';

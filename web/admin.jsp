@@ -22,17 +22,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-        
+
         <script>
 
-            function recup(id){
+            function recup(id) {
                 document.querySelector("#idsup").value = id;
             }
-            
+
+            function recupAll(id, nom, prenom, login) {
+                document.querySelector("#inputId").value = id;
+                document.querySelector("#inputNom").value = nom;
+                document.querySelector("#inputPrenom").value = prenom;
+                document.querySelector("#inputLogin").value = login;
+
+            }
+
         </script>
-        
-        
-        
+
+
+
 
     </head>
     <body>
@@ -58,7 +66,7 @@
         <ul>
             <li><h6>Conseillers activés</h6></li>
             <table id="tableActif" border="2">
-                <thead>
+                <thead class="thead-light">
                     <tr>
                         <th class="text-center">id</th>
                         <th class="text-center">Nom</th>
@@ -75,17 +83,17 @@
                             <tr>
                             <input type="hidden" name="id" value="${conseiller.id}"></input>
                             <input type="hidden" name="actif" value="${conseiller.actif}"></input>
-                            <td>${conseiller.id}</td>
-                            <td>${conseiller.nom}</td>
-                            <td>${conseiller.prenom}</td>
-                            <td>${conseiller.login}</td>
+                            <td class="colid">${conseiller.id}</td>
+                            <td class="col2">${conseiller.nom}</td>
+                            <td class="col2">${conseiller.prenom}</td>
+                            <td class="col3">${conseiller.login}</td>
                             <td>
                                 <button name="btn-activate" class="btn-danger"  >désactiver</button>
-                                
+
                             </td>
 
                             <td>
-                                <button name="btn-modify" class="btn-warning">modifier</button>
+                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
                             </td>
                             <td>
                                 <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
@@ -107,7 +115,7 @@
             <li><h6>Conseillers désactivés</h6></li>
 
             <table id="tableInactif" border="2">
-                <thead>
+                <thead class="thead-light">
                     <tr>
                         <th class="text-center">id</th>
                         <th class="text-center">Nom</th>
@@ -124,15 +132,15 @@
                             <tr>
                             <input type="hidden" name="id" value="${conseiller.id}"></input>
                             <input type="hidden" name="actif" value="${conseiller.actif}"></input>
-                            <td>${conseiller.id}</td>
-                            <td>${conseiller.nom}</td>
-                            <td>${conseiller.prenom}</td>
-                            <td>${conseiller.login}</td>
+                            <td class="colid">${conseiller.id}</td>
+                            <td class="col2">${conseiller.nom}</td>
+                            <td class="col2">${conseiller.prenom}</td>
+                            <td class="col3">${conseiller.login}</td>
                             <td>
                                 <button class="btn-success"  >activer</button>
                             </td>
                             <td>
-                                <button class="btn-warning">modifier</button>
+                                <button type="button" class="btn-warning" data-toggle="modal" onclick="recupAll(${conseiller.id}, '${conseiller.nom}', '${conseiller.prenom}', '${conseiller.login}')" data-target="#modalModifConseiller" >modifier</button>
                             </td>
                             <td>
                                 <button type="button" class="btn-danger" data-toggle ="modal" onclick="recup(${conseiller.id})" data-target="#modalConfirmSup" >supprimer</button>
@@ -154,14 +162,16 @@
 
 
         </ul>
-            
-            
-            
-            
-            
-            <%--  mmmmmmm j --%>
-            
-              <div class="modal fade" id="modalConfirmSup" role="dialog">
+
+        <p>${msg}</p>
+
+
+
+
+
+        <%--  mmmmmmm j --%>
+
+        <div class="modal fade" id="modalConfirmSup" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -179,8 +189,8 @@
 
             </div>
         </div>
-            
-                <%--  mmmmmmm j --%>
+
+        <%--  mmmmmmm j --%>
 
 
         <div class="modal fade" id="modalCreationConseiller" role="dialog">
@@ -205,6 +215,56 @@
                             <div class="form-group">
                                 <input required="required" name="mdpC" type="password" placeholder="password" class="form-control">
                             </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-block btn-danger" data-dismiss="modal">Fermer</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="submit" class="btn btn-block btn-success">Valider</button>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <%--  mmmmmmm j --%>
+
+
+
+        <div class="modal fade" id="modalModifConseiller" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modification d'un conseiller</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="ModifConseillerServlet" method="POST">
+                            <input type="hidden" id="inputId" name="idCo">
+                            <div class="form-group">
+                                <input id="inputNom" required="required" name="nomCo" type="text" placeholder="nom" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="inputPrenom" required="required" name="prenomCo" type="text" placeholder="prenom" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="inputLogin" required="required" name="loginCo" type="text" placeholder="Adresse mail" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="inputPassword" required="required" name="mdpCo" type="password" placeholder="Mot de passe" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input id="inputPassword2" required="required" name="mdpCo2" type="password" placeholder="Confirmation mot de passe" class="form-control">
+                            </div>
+
 
                             <div class="row">
                                 <div class="col-sm-6">
