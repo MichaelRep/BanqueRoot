@@ -54,18 +54,18 @@
 }
 
 .colid{
-    width: 100px;
+    width: 200px;
 }
 
 .col2{
-    width: 150px;
-    max-width: 150px;
+    width: 300px;
+    max-width: 300px;
     overflow: hidden;
 }
 
 .col3{
-    width: 200px;
-    max-width: 200px;
+    width: 350px;
+    max-width: 350px;
     overflow: hidden;
 }
 
